@@ -152,21 +152,45 @@
 (svg (gstalt-common-fate))
 
 (def slides
-  [[[-1 -1] gstalt-figure-ground]
-   [[-1 0] gstalt-symmetry]
-   [[-1 1] gstalt-similarity]
-   [[0 -1] gstalt-proximity]
-   [[0 0] gstalt-closure]
-   [[0 1] gstalt-common-fate]
-   [[1 -1] gstalt-continuity]])
+  [gstalt-figure-ground
+   gstalt-symmetry
+   gstalt-similarity
+   gstalt-proximity
+   gstalt-closure
+   gstalt-common-fate
+   gstalt-continuity])
+
+(defn path [t [x y & more]]
+  (str "M" x " " y " " t (str/join " " more)))
+
+(def slide-path
+  [0 0
+   0 1
+   1 1
+   1 2
+   0 2
+   0 3
+   1 3
+   2 2])
+
+(svg [:path {:stroke (palette 11)
+             :fill "none"
+             :d (path \L (map #(* % 10) slide-path))}])
+
+(defn zip [v1 v2]
+  (map vector v1 v2))
+
+(defn tr [x y]
+  (str "translate(" x "," y ")"))
 
 (def all-slides
   (let [z 300
         s "scale(0.2,0.2)"
-        tr (fn [x y] (str "translate(" (* x z) "," (* y z) ")"))]
+        points (partition-all 2 slide-path)]
     (into [:g]
-          (for [[[x y] f] slides]
-            [:g {:transform (str s " " (tr x y))} (f)]))))
+          (for [[[x y] f] (zip points slides)]
+            [:g {:transform (str s " " (tr (* x z) (* y z)))}
+             (f)]))))
 
 (svg all-slides)
 
