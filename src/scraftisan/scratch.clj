@@ -1,5 +1,7 @@
 (ns scraftisan.scratch
   (:require [clojure.string :as str]
+            [hiccup.core :as hiccup]
+            [hiccup2.core :as hiccup2]
             [scicloj.kindly.v4.kind :as kind]))
 
 (def palette
@@ -149,11 +151,23 @@
 
 (svg (gstalt-common-fate))
 
-(let [x 300]
-  (svg [:g {:transform (str "scale(0.2,0.2) translate(" x ",0)")} (gstalt-figure-ground)]
-       [:g {:transform (str "scale(0.2,0.2) translate(-" x ",-" x ")")} (gstalt-symmetry)]
-       [:g {:transform (str "scale(0.2,0.2) translate(-" x ",0)")} (gstalt-similarity)]
-       [:g {:transform (str "scale(0.2,0.2) translate(-" x "," x ")")} (gstalt-proximity)]
-       [:g {:transform (str "scale(0.2,0.2) translate(0,-" x ")")} (gstalt-closure)]
-       [:g {:transform (str "scale(0.2,0.2) translate(0,0)")} (gstalt-common-fate)]
-       [:g {:transform (str "scale(0.2,0.2) translate(0," x ")")} (gstalt-continuity)]))
+(def slides
+  [[[-1 -1] gstalt-figure-ground]
+   [[-1 0] gstalt-symmetry]
+   [[-1 1] gstalt-similarity]
+   [[0 -1] gstalt-proximity]
+   [[0 0] gstalt-closure]
+   [[0 1] gstalt-common-fate]
+   [[1 -1] gstalt-continuity]])
+
+(def all-slides
+  (let [z 300
+        s "scale(0.2,0.2)"
+        tr (fn [x y] (str "translate(" (* x z) "," (* y z) ")"))]
+    (into [:g]
+          (for [[[x y] f] slides]
+            [:g {:transform (str s " " (tr x y))} (f)]))))
+
+(svg all-slides)
+
+(spit "scraftisan.svg" (hiccup2/html (svg all-slides)))
