@@ -1,3 +1,4 @@
-{:deps    {hiccup/hiccup      {:mvn/version "2.0.0-RC3"}
-           org.scicloj/kindly {:mvn/version "4-beta5"}}
+{:deps    {hiccup/hiccup                  {:mvn/version "2.0.0-RC3"}
+           io.github.nextjournal/markdown {:mvn/version "0.5.148"}
+           org.scicloj/kindly             {:mvn/version "4-beta5"}}
  :aliases {:dev {:extra-deps {org.scicloj/clay {:mvn/version "2-beta15"}}}}}

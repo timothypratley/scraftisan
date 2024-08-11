@@ -1,8 +1,8 @@
 (ns scraftisan.scratch
   (:require [clojure.string :as str]
-            [hiccup.core :as hiccup]
             [hiccup2.core :as hiccup2]
-            [scicloj.kindly.v4.kind :as kind]))
+            [scicloj.kindly.v4.kind :as kind]
+            [nextjournal.markdown :as md]))
 
 (def palette
   ["#FCFFE0"
@@ -151,8 +151,60 @@
 
 (svg (gstalt-common-fate))
 
+;; TODO: we don't need this, if we want it we could depend on medley or similar
+(defn merge-deep
+  ([m1 m2]
+   (if (and (or (nil? m1) (map? m1))
+            (or (nil? m2) (map? m2)))
+     (merge-with merge-deep m1 m2)
+     m2))
+  ([m1 m2 & more]
+   (reduce (fn [acc m]
+             (merge-deep acc m))
+           (merge-deep m1 m2)
+           more)))
+
+(defn fo [props & body]
+  [:foreignObject (merge-deep {:style {:overflow "visible"
+                                       :width    1
+                                       :height   1}}
+                              props)
+   (into
+     [:div {:xmlns "http://www.w3.org/1999/xhtml"}]
+     body)])
+
+(defn foreign-objects []
+  (fo {:style {:width "100%"}}
+      [:div "Hello world"
+       [:button "Click me!"]]))
+
+(svg (foreign-objects))
+
+(defn markdown []
+  (fo {:style {:width "100%"}}
+      (md/->hiccup "## This is **markdown**
+* Because we like markdown
+* It's nice")))
+
+(svg (markdown))
+
+(defn making-use-of-svg []
+  (fo {:style {:width "100%"}}
+      (md/->hiccup "## Making use of existing SVG
+* Converting SVG (XML) to hiccup
+* Cursive offers to do it when you copy paste
+* Does emacs?
+* Font awesome SVGs are useful (https://fontawesome.com/search?q=code&o=r&m=free&f=classic)
+* Copy the SVG code, and paste it into hiccup")))
+
+;; TODO: we need to set up the slide viewboxes
+;; TODO: can we make an interactive way of positioning slides and path points?
+;; TODO: can we have animations within slides?
+
 (def slides
-  [gstalt-figure-ground
+  [foreign-objects
+   markdown
+   gstalt-figure-ground
    gstalt-symmetry
    gstalt-similarity
    gstalt-proximity
@@ -164,7 +216,11 @@
   (str "M" x " " y " " t (str/join " " more)))
 
 (def slide-path
-  [0 0
+  [-2 -2
+   -2 -1
+   -1 -2
+   -1 -1
+   0 0
    0 1
    1 1
    1 2
@@ -174,8 +230,8 @@
    2 2])
 
 (svg [:path {:stroke (palette 11)
-             :fill "none"
-             :d (path \L (map #(* % 10) slide-path))}])
+             :fill   "none"
+             :d      (path \L (map #(* % 10) slide-path))}])
 
 (defn zip [v1 v2]
   (map vector v1 v2))
