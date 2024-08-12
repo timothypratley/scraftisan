@@ -1,8 +1,9 @@
 (ns scraftisan.scratch
   (:require [clojure.string :as str]
-            [scraftisan.hiccup :as hiccup]
+            [hiccup2.core :as hiccup2]
             [scicloj.kindly.v4.kind :as kind]
-            [nextjournal.markdown :as md]))
+            [nextjournal.markdown :as md]
+            [nextjournal.markdown.transform :as mdt]))
 
 (def palette
   ["#FCFFE0"
@@ -180,9 +181,18 @@
 
 (svg (foreign-objects))
 
+(defn marcup
+  "Hiccup doesn't support fragments [:<> ...] yet, but does support seq fragments.
+  We render fragments as seqs, so they can be converted correctly by hiccup."
+  [s]
+  (->> (md/parse s)
+       (mdt/->hiccup (assoc mdt/default-hiccup-renderers
+                       :plain (fn [ctx {:keys [text content]}]
+                                (or text (map #(mdt/->hiccup ctx %) content)))))))
+
 (defn markdown-example []
   (fo {:style {:width "100%"}}
-      (md/->hiccup "## This is **markdown**
+      (marcup "## This is **markdown**
 * Because we like markdown
 * It's nice")))
 
@@ -190,7 +200,7 @@
 
 (defn making-use-of-svg []
   (fo {:style {:width "100%"}}
-      (md/->hiccup "## Making use of existing SVG
+      (marcup "## Making use of existing SVG
 * Converting SVG (XML) to hiccup
 * Cursive offers to do it when you copy paste
 * Does emacs?
@@ -210,7 +220,8 @@
    gstalt-proximity
    gstalt-closure
    gstalt-common-fate
-   gstalt-continuity])
+   gstalt-continuity
+   making-use-of-svg])
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))
@@ -239,6 +250,7 @@
 (defn tr [x y]
   (str "translate(" x "," y ")"))
 
+;; TODO: calculate bounds
 (def all-slides
   (let [z 300
         s "scale(0.2,0.2)"
@@ -250,4 +262,4 @@
 
 (svg all-slides)
 
-(spit "scraftisan.svg" (hiccup/html (svg all-slides)))
+(spit "scraftisan.svg" (hiccup2/html (svg all-slides)))
