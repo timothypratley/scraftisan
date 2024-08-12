@@ -1,6 +1,6 @@
 (ns scraftisan.scratch
   (:require [clojure.string :as str]
-            [hiccup2.core :as hiccup2]
+            [scraftisan.hiccup :as hiccup]
             [scicloj.kindly.v4.kind :as kind]
             [nextjournal.markdown :as md]))
 
@@ -180,13 +180,13 @@
 
 (svg (foreign-objects))
 
-(defn markdown []
+(defn markdown-example []
   (fo {:style {:width "100%"}}
       (md/->hiccup "## This is **markdown**
 * Because we like markdown
 * It's nice")))
 
-(svg (markdown))
+(svg (markdown-example))
 
 (defn making-use-of-svg []
   (fo {:style {:width "100%"}}
@@ -203,7 +203,7 @@
 
 (def slides
   [foreign-objects
-   markdown
+   markdown-example
    gstalt-figure-ground
    gstalt-symmetry
    gstalt-similarity
@@ -250,4 +250,4 @@
 
 (svg all-slides)
 
-(spit "scraftisan.svg" (hiccup2/html (svg all-slides)))
+(spit "scraftisan.svg" (hiccup/html (svg all-slides)))
