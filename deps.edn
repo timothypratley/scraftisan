@@ -1,4 +1,7 @@
 {:deps    {hiccup/hiccup                  {:mvn/version "2.0.0-RC3"}
            io.github.nextjournal/markdown {:mvn/version "0.5.148"}
-           org.scicloj/kindly             {:mvn/version "4-beta5"}}
+           org.scicloj/kindly             {:mvn/version "4-beta5"}
+           ring/ring-jetty-adapter        {:mvn/version "1.12.2"}
+           traction/traction {:git/url "https://github.com/chouser/tractionsvg"
+                              :git/sha "aeb60027f359a7db58ded47673ea36479f565172"}}
  :aliases {:dev {:extra-deps {org.scicloj/clay {:mvn/version "2-beta15"}}}}}

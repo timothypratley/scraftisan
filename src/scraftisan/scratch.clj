@@ -4,7 +4,10 @@
             [scraftisan.color :as color]
             [scraftisan.html-in-svg :as fo]
             [scraftisan.svg-concepts :as svg]
-            [scraftisan.marcup :as marcup]))
+            [scraftisan.marcup :as marcup]
+            [ring.adapter.jetty :as jetty]
+            [ring.middleware.resource :refer [wrap-resource]]
+            [ring.util.response :as response]))
 
 (defn gstalt-proximity []
   [:g {:stroke (color/palette 11)}
@@ -146,10 +149,40 @@
         s "scale(0.1,0.1)"
         points (partition-all 2 slide-path)]
     (into [:g]
-          (for [[[x y] f] (map vector points slides)]
-            [:g {:transform (str (to (* x z) (* y z)) " " s)}
+          (for [[[x y] f i] (map vector points slides (range))]
+            [:g {:id (format "slide%03d" i)
+                 :transform (str (to (* x z) (* y z)) " " s)}
              (f)]))))
 
 (svg/svg all-slides)
 
 (spit "scraftisan.svg" (hiccup2/html (svg/svg all-slides)))
+
+(defn tractionize [[g & groups]]
+  (assert (= g :g))
+  (list
+   [:script {:xmlns:xlink "http://www.w3.org/1999/xlink"
+             :xlink:href "traction.js"
+             :type "text/ecmascript"}]
+   [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
+    [:init
+     [:set {:duration "1000"}]]
+    (for [i (range (count groups))]
+      [:step {:view (format "slide%03d" i)}])]
+   groups))
+
+(defn handler [request]
+  (case (:uri request)
+    "/" (-> (response/response (str (hiccup2/html (svg/svg (tractionize all-slides)))))
+            (response/content-type "image/svg+xml"))
+    "/traction.js" (response/resource-response "traction.js")
+    (response/not-found "Not Found")))
+
+(defn start-server [port]
+  (jetty/run-jetty #'handler {:port port :join? false}))
+
+(comment
+
+  (def s (start-server 8045))
+
+  :-)
