@@ -3,7 +3,10 @@
             [hiccup2.core :as hiccup2]
             [scicloj.kindly.v4.kind :as kind]
             [nextjournal.markdown :as md]
-            [nextjournal.markdown.transform :as mdt]))
+            [nextjournal.markdown.transform :as mdt]
+            [ring.adapter.jetty :as jetty]
+            [ring.middleware.resource :refer [wrap-resource]]
+            [ring.util.response :as response]))
 
 (def palette
   ["#FCFFE0"
@@ -244,8 +247,8 @@
              :fill   "none"
              :d      (path \L (map #(* % 10) slide-path))}])
 
-(defn zip [v1 v2]
-  (map vector v1 v2))
+(defn zip [& args]
+  (apply map vector args))
 
 (defn tr [x y]
   (str "translate(" x "," y ")"))
@@ -255,11 +258,42 @@
   (let [z 300
         s "scale(0.2,0.2)"
         points (partition-all 2 slide-path)]
+
     (into [:g]
-          (for [[[x y] f] (zip points slides)]
-            [:g {:transform (str s " " (tr (* x z) (* y z)))}
+          (for [[[x y] f i] (zip points slides (range))]
+            [:g {:id (format "slide%03d" i)
+                 :transform (str s " " (tr (* x z) (* y z)))}
              (f)]))))
 
 (svg all-slides)
 
 (spit "scraftisan.svg" (hiccup2/html (svg all-slides)))
+
+(defn tractionize [[g & groups]]
+  (assert (= g :g))
+  (list
+   [:script {:xmlns:xlink "http://www.w3.org/1999/xlink"
+             :xlink:href "traction.js"
+             :type "text/ecmascript"}]
+   [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
+    [:init
+     [:set {:duration "1000"}]]
+    (for [i (range (count groups))]
+      [:step {:view (format "slide%03d" i)}])]
+   groups))
+
+(defn handler [request]
+  (case (:uri request)
+    "/" (-> (response/response (str (hiccup2/html (svg (tractionize all-slides)))))
+            (response/content-type "image/svg+xml"))
+    "/traction.js" (response/resource-response "traction.js")
+    (response/not-found "Not Found")))
+
+(defn start-server [port]
+  (jetty/run-jetty #'handler {:port port :join? false}))
+
+(comment
+
+  (def s (start-server 8045))
+
+  :-)
