@@ -137,8 +137,8 @@
                   [x y])))
 
 (svg/svg [:path {:stroke (color/palette 11)
-             :fill   "none"
-             :d      (path \L (map #(* % 10) slide-path))}])
+                 :fill   "none"
+                 :d      (path \L (map #(* % 10) slide-path))}])
 
 (defn to [x y]
   (str "translate(" x "," y ")"))
@@ -150,9 +150,9 @@
         points (partition-all 2 slide-path)]
     (into [:g]
           (for [[[x y] f i] (map vector points slides (range))]
-            [:g {:id (format "slide%03d" i)
-                 :transform (str (to (* x z) (* y z)) " " s)}
-             (f)]))))
+            [:g {:id (format "slide%03d" i)}
+             [:g {:transform (str (to (* x z) (* y z)) " " s)}
+              (f)]]))))
 
 (svg/svg all-slides)
 
@@ -161,15 +161,15 @@
 (defn tractionize [[g & groups]]
   (assert (= g :g))
   (list
-   [:script {:xmlns:xlink "http://www.w3.org/1999/xlink"
-             :xlink:href "traction.js"
-             :type "text/ecmascript"}]
-   [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
-    [:init
-     [:set {:duration "1000"}]]
-    (for [i (range (count groups))]
-      [:step {:view (format "slide%03d" i)}])]
-   groups))
+    [:script {:xmlns:xlink "http://www.w3.org/1999/xlink"
+              :xlink:href  "traction.js"
+              :type        "text/ecmascript"}]
+    [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
+     [:init
+      [:set {:duration "1000"}]]
+     (for [i (range (count groups))]
+       [:step {:view (format "slide%03d" i)}])]
+    groups))
 
 (defn handler [request]
   (case (:uri request)
