@@ -16,7 +16,7 @@
    "#AFA050"])
 
 
-(defn palette-view []
+(def palette-view
   (let [w 32
         h 32]
     (->> (partition-all 3 palette)
@@ -29,6 +29,8 @@
                                                                               'Z])}])
                                           row)
                              (into [:g]))))
-         (into [:g]))))
+         (into [:g {:data-title "palette"}]))))
 
-#_(svg (palette-view))
+(def slides
+  [:g {:data-title "colors"}
+   palette-view])

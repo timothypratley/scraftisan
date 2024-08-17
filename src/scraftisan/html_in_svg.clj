@@ -22,9 +22,11 @@
      [:div {:xmlns "http://www.w3.org/1999/xhtml"}]
      body)])
 
-(defn foreign-objects []
+(def foreign-objects
   (fo {:style {:width "100%"}}
       [:div "Hello world"
        [:button "Click me!"]]))
 
-#_(svg (foreign-objects))
+(def slides
+  [:g {:data-title "html in SVG"}
+   foreign-objects])

@@ -4,6 +4,11 @@
             [scraftisan.color :as color]))
 
 
+(def what-is-svg
+  [:g {:data-title "what is SVG"}
+   [:circle {:r 20 :fill (color/palette 1)}]]
+
+  )
 #_(marcup/marcup "Xml namespace is a required
 
 ```html
@@ -33,3 +38,7 @@ We love Hiccup
                    :height 256
                    :rx     4}]]
           body)))
+
+(def slides
+  [:g {:data-title "SVG concepts"}
+   what-is-svg])

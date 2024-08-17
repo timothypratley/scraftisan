@@ -14,19 +14,24 @@
   [s]
   (md/->hiccup mdctx s))
 
-(defn markdown-example []
-  (fo/fo {:style {:width "100%"}}
-      (marcup "## This is **markdown**
+(def markdown-example
+  [:g {:data-title "markdown example"}
+   (fo/fo {:style {:width "100%"}}
+          (marcup "## This is **markdown**
 * Because we like markdown
-* It's nice")))
+* It's nice"))])
 
-#_(svg/svg (markdown-example))
-
-(defn making-use-of-svg []
-  (fo/fo {:style {:width "100%"}}
-      (marcup "## Making use of existing SVG
+(def making-use-of-svg
+  [:g {:data-title "making use of svg"}
+   (fo/fo {:style {:width "100%"}}
+          (marcup "## Making use of existing SVG
 * Converting SVG (XML) to hiccup
 * Cursive offers to do it when you copy paste
 * Does emacs?
 * Font awesome SVGs are useful (https://fontawesome.com/search?q=code&o=r&m=free&f=classic)
-* Copy the SVG code, and paste it into hiccup")))
+* Copy the SVG code, and paste it into hiccup"))])
+
+(def slides
+  [:g {:data-title "markup"}
+   markdown-example
+   making-use-of-svg])
