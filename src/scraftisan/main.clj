@@ -112,7 +112,7 @@
         hiccup))
 
 (defn html []
-  (hiccup2/html (tractionize (svg/svg (setup-slides (slide-tree))))))
+  (str (hiccup2/html (tractionize (svg/svg (setup-slides (slide-tree)))))))
 
 (defn -main [& args]
   (spit "scraftisan.svg" (html)))
