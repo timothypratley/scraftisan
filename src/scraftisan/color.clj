@@ -15,11 +15,10 @@
    "#F0F0C8"
    "#AFA050"])
 
-
-(def palette-view
+(defn palette-view [p]
   (let [w 32
         h 32]
-    (->> (partition-all 3 palette)
+    (->> (partition-all 3 p)
          (map-indexed (fn [y row]
                         (->> (map-indexed (fn [x color]
                                             [:path {:transform (str "translate(" (* (- x 1) w 2) " " (* (- y 1) h 2) ")")
@@ -29,8 +28,17 @@
                                                                               'Z])}])
                                           row)
                              (into [:g]))))
-         (into [:g {:data-title "palette"}]))))
+         (into [:g {}]))))
+
+(def choosing-colors
+  [:g {:data-title ""}
+   (palette-view ["red" "green" "blue" "yellow"])])
+
+(def pp
+  [:g {:data-title ""}
+   (palette-view palette)])
 
 (def slides
   [:g {:data-title "colors"}
+   choosing-colors
    palette-view])

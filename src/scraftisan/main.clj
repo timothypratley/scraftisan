@@ -1,9 +1,12 @@
 (ns scraftisan.main
   (:require [clojure.string :as str]
-            [clojure.walk :as walk]
             [hiccup2.core :as hiccup2]
+            [scraftisan.applications :as appl]
+            [scraftisan.animation :as anim]
             [scraftisan.color :as color]
             [scraftisan.html-in-svg :as fo]
+            [scraftisan.iconography :as ico]
+            [scraftisan.legends :as leg]
             [scraftisan.marcup :as marcup]
             [scraftisan.principles :as principles]
             [scraftisan.svg-concepts :as svg]))
@@ -14,24 +17,18 @@
 
 (defn slide-tree []
   [:g {:data-title "overview"}
+   appl/slides
    svg/slides
    color/slides
    fo/slides
    marcup/slides
-   principles/slides])
+   leg/slides
+   principles/slides
+   anim/slides
+   ico/slides])
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))
-
-(def slide-path
-  (apply concat (for [x [-1 0 1 2]
-                      y [-1 0 1 2]]
-                  [x y])))
-
-(comment
-  (svg/svg [:path {:stroke (color/palette 11)
-                   :fill   "none"
-                   :d      (path \L (map #(* % 10) slide-path))}]))
 
 (defn alter-attrs [hiccup f]
   (cond (vector? hiccup)
@@ -58,10 +55,8 @@
       (fn [i [x y]]
         {:id        (slide-id i)
          :transform (str (to (* x z) (* y z)) " scale(0.5,0.5)")})
-      (partition-all 2 slide-path))))
-
-(comment
-  (slide-attrs))
+      ;; TODO: groups
+      (partition-all 2 (filter number? principles/hummi-path)))))
 
 (defn setup-slides [hiccup]
   (let [a (atom (slide-attrs))
@@ -69,10 +64,11 @@
                      (do (reset! a more) head)
                      (throw (ex-info "Not enough slide attrs"
                                      {:id ::not-enough-slide-attrs})))]
-    (alter-attrs hiccup (fn [attrs]
-                          (if (contains? attrs :data-title)
-                            (merge attrs (take-one!))
-                            attrs)))))
+    (alter-attrs hiccup
+                 (fn [attrs]
+                   (if (contains? attrs :data-title)
+                     (merge attrs (take-one!))
+                     attrs)))))
 
 (defn walk-hiccup
   "Returns a depth first sequence of all hiccup nodes [tag attr? & children]."

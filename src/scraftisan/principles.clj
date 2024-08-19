@@ -2,7 +2,7 @@
   (:require [clojure.string :as str]
             [scraftisan.color :as color]))
 
-(def gstalt-proximity
+(def proximity
   [:g {:stroke (color/palette 11)}
    #_[:rect {:fill   (palette 10)
              :x      4
@@ -50,48 +50,57 @@
      [:path {:fill (color/palette (inc (rand-int (dec (count color/palette)))))
              :d    (str/join " " hummi-path)}]]))
 
-(def gstalt-similarity
-  (into [:g] (repeatedly 20 rand-hummi)))
+(def similarity
+  (into [:g {:data-title ""}]
+        (repeatedly 20 rand-hummi)))
 
-(def gstalt-continuity
-  [:path {:d                (str/join " " hummi-path)
-          :fill             "none"
-          :stroke           (color/palette 1)
-          :stroke-width     5
-          :stroke-dasharray [5]}])
+(def continuity
+  [:g {:data-title ""}
+   [:path {:d                (str/join " " hummi-path)
+           :fill             "none"
+           :stroke           (color/palette 1)
+           :stroke-width     5
+           :stroke-dasharray [5]}]])
 
-(def gstalt-closure
-  [:path {:d            (str/join " " (take 70 hummi-path))
-          :fill         "none"
-          :stroke       (color/palette 1)
-          :stroke-width 5}])
+(def closure
+  [:g {:data-title ""}
+   [:path {:d            (str/join " " (take 70 hummi-path))
+           :fill         "none"
+           :stroke       (color/palette 1)
+           :stroke-width 5}]])
 
-(def gstalt-symmetry
-  (into [:g]
+(def symmetry
+  (into [:g {:data-title ""}]
         (for [x [-1 1]
               y [-1 1]]
           [:path {:transform (str "scale(" x "," y ")")
                   :d         (str/join " " hummi-path)
                   :fill      (color/palette 3)}])))
 
-(def gstalt-figure-ground
-  [:path {:transform (str "scale(5,5) translate(" -48 "," -48 ")")
-          :d         (str/join " " hummi-path)
-          :fill      (color/palette 2)}])
+(def figure-ground
+  [:g {:data-title ""}
+   [:path {:transform (str "scale(5,5) translate(" -48 "," -48 ")")
+           :d         (str/join " " hummi-path)
+           :fill      (color/palette 2)}]])
 
-(def gstalt-common-fate
-  (into [:g]
+(def common-fate
+  (into [:g {:data-title ""}]
         (for [[x y] [[-96 -64] [-32 0] [16 -96] [-64 -32] [0 16]]]
           [:path {:transform (str "translate(" x "," y ") scale(0.5,0.5)")
                   :d         (str/join " " hummi-path)
                   :fill      (color/palette 1)}])))
 
+(def nand
+  [:g {:data-title ""}
+   [:circle {:r 10}]])
+
 (def slides
   [:g {:data-title "design principles"}
-   gstalt-figure-ground
-   gstalt-symmetry
-   gstalt-similarity
-   gstalt-proximity
-   gstalt-closure
-   gstalt-common-fate
-   gstalt-continuity])
+   figure-ground
+   symmetry
+   similarity
+   proximity
+   closure
+   common-fate
+   continuity
+   nand])
