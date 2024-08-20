@@ -2,14 +2,19 @@
   (:require [clojure.string :as str]
             [hiccup2.core :as hiccup2]
             [scraftisan.applications :as appl]
+            [scraftisan.stars :as stars]
             [scraftisan.animation :as anim]
             [scraftisan.color :as color]
+            [scraftisan.conclusion :as conclusion]
+            [scraftisan.freehand :as freehand]
             [scraftisan.html-in-svg :as fo]
+            [scraftisan.intro :as intro]
             [scraftisan.iconography :as ico]
-            [scraftisan.legends :as leg]
+            [scraftisan.legends :as legends]
             [scraftisan.marcup :as marcup]
             [scraftisan.principles :as principles]
-            [scraftisan.svg-concepts :as svg]))
+            [scraftisan.svg-concepts :as svg]
+            [scraftisan.workflow :as workflow]))
 
 ;; TODO: we need to set up the slide viewboxes
 ;; TODO: can we make an interactive way of positioning slides and path points?
@@ -17,15 +22,20 @@
 
 (defn slide-tree []
   [:g {:data-title "overview"}
+   intro/slides
+   stars/slides
    appl/slides
    svg/slides
+   workflow/slides
    color/slides
    fo/slides
    marcup/slides
-   leg/slides
+   legends/slides
    principles/slides
    anim/slides
-   ico/slides])
+   freehand/slides
+   ico/slides
+   conclusion/slides])
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))

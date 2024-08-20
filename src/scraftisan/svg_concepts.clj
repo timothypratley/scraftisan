@@ -2,7 +2,6 @@
   (:require [clojure.string :as str]
             [hiccup2.core :as hiccup2]
             [scicloj.kindly.v4.kind :as kind]
-    #_[scraftisan.marcup :as marcup]
             [scraftisan.color :as color]))
 
 

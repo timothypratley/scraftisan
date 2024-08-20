@@ -1,5 +1,4 @@
-(ns scraftisan.applications
-  (:require [scraftisan.marcup :as marcup]))
+(ns scraftisan.applications)
 
 (def applic
   [:g {:data-title ""}
