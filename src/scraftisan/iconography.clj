@@ -1,6 +1,6 @@
 (ns scraftisan.iconography
   (:require [scraftisan.color :as color]
-            [scraftisan.svg-concepts :as svg]))
+            [scraftisan.svg :as svg]))
 
 (def scicloj-icons
   [:g {:data-title ""}

@@ -12,13 +12,15 @@
             [scraftisan.iconography :as ico]
             [scraftisan.legends :as legends]
             [scraftisan.marcup :as marcup]
+            [scraftisan.path :as path]
             [scraftisan.principles :as principles]
-            [scraftisan.svg-concepts :as svg]
+            [scraftisan.svg :as svg]
             [scraftisan.workflow :as workflow]))
 
 ;; TODO: we need to set up the slide viewboxes
 ;; TODO: can we make an interactive way of positioning slides and path points?
 ;; TODO: can we have animations within slides?
+;; TODO: some slides might want to be absolute?
 
 (defn slide-tree []
   [:g {:data-title "overview"}
@@ -26,6 +28,7 @@
    stars/slides
    appl/slides
    svg/slides
+   path/slides
    workflow/slides
    color/slides
    fo/slides
@@ -64,9 +67,10 @@
     (map-indexed
       (fn [i [x y]]
         {:id        (slide-id i)
-         :transform (str (to (* x z) (* y z)) " scale(0.5,0.5)")})
-      ;; TODO: groups
-      (partition-all 2 (filter number? principles/hummi-path)))))
+         ;; TODO: not all slides are absolute
+         #_#_:transform (str (to (* x z) (* y z)) " scale(0.5,0.5)")})
+      ;; TODO: groups, TODO: don't need it?
+      (cycle (partition-all 2 (filter number? principles/hummi-path))))))
 
 (defn setup-slides [hiccup]
   (let [a (atom (slide-attrs))
@@ -122,3 +126,6 @@
 
 (defn -main [& args]
   (spit "scraftisan.svg" (html)))
+
+(comment
+  (spit "sketches/night-sky.svg" (hiccup2/html stars/night-sky-standalone)))

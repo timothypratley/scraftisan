@@ -2,18 +2,20 @@
   (:require [clojure.string :as str]))
 
 (def palette
-  ["#FCFFE0"
-   "#D0F040"
-   "#E6E6FA"
-   "#D0F7FF"
-   "#FCECC5"
-   "#FCE2F7"
-   "#E0FFD0"
-   "#F0D0E0"
-   "#40D0A0"
-   "#FF8080"
-   "#F0F0C8"
-   "#AFA050"])
+  ["#FCFFE0"                                                ;  0
+   "#D0F040"                                                ;  1
+   "#E6E6FA"                                                ;  2
+   "#D0F7FF"                                                ;  3
+   "#FCECC5"                                                ;  4
+   "#FCE2F7"                                                ;  5
+   "#E0FFD0"                                                ;  6
+   "#F0D0E0"                                                ;  7
+   "#40D0A0"                                                ;  8
+   "#FF8080"                                                ;  9
+   "#F0F0C8"                                                ; 10
+   "#AFA050"                                                ; 11
+   "#040622"                                                ; 12
+   ])
 
 (defn palette-view [p]
   (let [w 32

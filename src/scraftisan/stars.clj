@@ -33,16 +33,16 @@
 
 (def night-sky
   (into [:g {:data-title ""
-             :transform "scale(3,3)"
-             :fill (color/palette 0)}
+             :transform  "translate(500,250) scale(5,5)"
+             :fill       (color/palette 0)}
          (let [len 2.0
                l2 (/ len 2.0)
                w (/ len 10.0)
                -len (- len)
                -l2 (- l2)
                -w (- w)]
-           [:g {:id        "north star"
-                :fill      (color/palette 0)
+           [:g {:id   "north star"
+                :fill (color/palette 0)
                 #_#_:transform "translate(-30,-30) scale(1,1.2)"}
             [:path {:d (str/join " " ['M 0 -len 'L w 0 0 len -w 0 'Z])}]
             [:path {:d (str/join " " ['M -len 0 'L 0 w len 0 0 -w 'Z])}]
@@ -52,27 +52,30 @@
               [x y luminosity] stars]
           [:circle {:cx x :cy y :r (* luminosity 0.5)}])))
 
-(kind/hiccup
-  [:svg {:height  "100%"
-         :width   "100%"
-         :viewBox [-127 -127 256 256]
-         :xmlns   "http://www.w3.org/2000/svg"}
-   [:rect {:fill   "#040622" #_(color/palette 11)
-           :stroke (color/palette 0)
-           :x      -127
-           :y      -127
-           :width  256
-           :height 256
-           :rx     4}]
-   night-sky])
+;; TODO: remove
+(def night-sky-standalone
+  (kind/hiccup
+    [:svg {:height  "100%"
+           :width   "100%"
+           :viewBox [-127 -127 256 256]
+           :xmlns   "http://www.w3.org/2000/svg"}
+     [:rect {:fill   (color/palette 12)
+             :stroke (color/palette 0)
+             :x      -127
+             :y      -127
+             :width  256
+             :height 256
+             :rx     4}]
+     night-sky]))
 
 (def thematic
   [:g {:data-title ""}
    [:p
-"* a little bit of knowledge can take you a long way
-* to the stars!"]])
+    "* a little bit of knowledge can take you a long way
+    * to the stars!"]])
 
 (def slides
-  [:g {:data-title ""}
+  [:g {:data-title    ""
+       :data-absolute true}
    thematic
    night-sky])
