@@ -113,6 +113,7 @@
          [:script {:xmlns:xlink "http://www.w3.org/1999/xlink"
                    :xlink:href  "traction.js"
                    :type        "text/ecmascript"}]
+         #_[:script {:type "text/ecmascript"} "setTimeout(() => location.reload(), 2000)"]
          [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
           [:init
            [:set {:duration "1000"}]]
@@ -128,4 +129,11 @@
   (spit "scraftisan.svg" (html)))
 
 (comment
+
+  (defonce reload
+    (future
+      (while true
+        (spit "scraftisan.svg" (html))
+        (Thread/sleep 1000))))
+
   (spit "sketches/night-sky.svg" (hiccup2/html stars/night-sky-standalone)))
