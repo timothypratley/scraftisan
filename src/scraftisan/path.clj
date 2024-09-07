@@ -18,7 +18,8 @@
                     [:circle {:cx           x
                               :cy           y
                               :r            3
-                              :stroke-width 3
+                              :stroke-width 1
+                              :fill         'none
                               :stroke       (color/palette 9)}]
                     [:text {:x    (+ 5 x)
                             :y    y
@@ -33,16 +34,60 @@
    ;; straight line
    [:path {:d (str/join " " ['M 0 500 'L 1000 500])}]
    ;; chain points
+   #_
    [:path {:d (str/join " " ['M 0 500 'L 100 480 200 500 300 460 400 500])}]
+
+   #_
+   [:path {:transform "translate(0,500) scale(2,2)"
+           :d (str/join " " ['M 0 0 'L 100 -20, 200 0 300 -40, 400 0])}]
+
+   ;; choosing control points exactly between each of the end point makes exactly the same jagged line
+   #_
+   [:path {:transform "translate(0,500) scale(2,2)"
+           :d (str/join " " ['M 0 0 'Q 50 -10, 100 -20,, 150 -10, 200 0,, 250 -20, 300 -40,, 350 -20, 400 0])}]
+
+   ;; by offsetting the control points, we can get curves with a sharp corner at the endpoints
+   #_
+   [:path {:transform "translate(0,500) scale(2,2)"
+           :d (str/join " " ['M 0 0 'Q 50 -20, 100 -20,, 150 0, 200 0,, 250 -40, 300 -40,, 350 0, 400 0])}]
+
+   ;; Maybe T with extra points is easiest?
+   #_
+   [:path {:transform "translate(0,500) scale(2,2)"
+           :d (str/join " " ['M 0 0 'T 30 -15,, 100 -20,, 150 -15,, 200 0,, 300 -40,, 400 0])}]
+
+   ;; Nope, it's a mess
+   #_
+   [:g {:transform "translate(0,500) scale(2,2)"}
+    (path+points ['M 0 0 'Q -50 15, 0 0 'T 50 -15,, 100 -20,, 150 -15,, 200 0,, 300 -40,, 400 0])]
+
+   ;; Kill the sharp corners with control points that form a line with their endpoint
+   (let [p (fn [x y width] ;; two control points in a horizontal line with the endpoint in the middle
+             [(- x width) y
+              x y
+              (+ x width) y])]
+     [:g {:transform "translate(0,500) scale(2,2)"}
+      (path+points (flatten ['M 0 0 'C 40 0
+                             (p 100 -20, 40)
+                             (p 200 0,   50)
+                             (p 300 -40, 40)
+                             (p 400 0,   50)]))])
+
+   [:path {:transform "translate(0,500) scale(2,2)"
+           :stroke "#5555ff"
+           :fill "none"
+           :d (str/join " " ['M 0 0 'L 100 -20, 200 0 300 -40, 400 0])}]
    ;; Quadratic curves
 
    ;;[:path {:d (str/join " " ['M 400 500 'Q 500 500 600 450 ,, 600 450 700 450 800 500 ,, 800 500 900 400 1000 500])}]
 
    ;; bell curve
+   #_
    (path+points ['M 400 500 'Q 500 500, 600 450,, 700 400, 800 450,, 900 500 1000 500 'Z])
 
    ;; touching every point:
    ;; supply an extra control point, then imply the rest.
+   #_
    [:g {:opacity 0.5
         :fill "green"}
     (path+points ['M 400 500 'M 500 500, 'Q 550, 500 600 450,, 'T 700 400, 800 450,, 900 500 1000 500 'Z])]
