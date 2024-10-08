@@ -1,9 +1,9 @@
-(ns scraftisan.animation)
+(ns scraftisan.animation
+  (:require [scraftisan.util :as util]))
 
 (def spider
   [:g {}
    [:p "I'm a spider!"]])
 
 (def slides
-  [:g {}
-   spider])
+  (util/arrange [[spider 0 0]]))

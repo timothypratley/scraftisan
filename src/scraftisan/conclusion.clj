@@ -1,8 +1,8 @@
-(ns scraftisan.conclusion)
+(ns scraftisan.conclusion
+  (:require [scraftisan.util :as util]))
 
 (def conclusion
   [:g {:data-title ""}])
 
 (def slides
-  [:g {:data-title ""}
-   conclusion])
+  (util/arrange [[conclusion 0 0]]))

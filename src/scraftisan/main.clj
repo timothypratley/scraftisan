@@ -2,6 +2,7 @@
   (:require [clojure.string :as str]
             [hiccup2.core :as hiccup2]
             [scraftisan.applications :as appl]
+            [scraftisan.astronomy :as astronomy]
             [scraftisan.stars :as stars]
             [scraftisan.animation :as anim]
             [scraftisan.color :as color]
@@ -12,10 +13,13 @@
             [scraftisan.iconography :as ico]
             [scraftisan.legends :as legends]
             [scraftisan.marcup :as marcup]
-            [scraftisan.path :as path]
+            [scraftisan.paths :as paths]
+            [scraftisan.groups :as groups]
             [scraftisan.principles :as principles]
-            [scraftisan.svg :as svg]
-            [scraftisan.workflow :as workflow]))
+            [scraftisan.util :as util]
+            [scraftisan.how :as how]
+            [scraftisan.workflow :as workflow]
+            [scraftisan.why :as why]))
 
 ;; TODO: we need to set up the slide viewboxes
 ;; TODO: can we make an interactive way of positioning slides and path points?
@@ -23,29 +27,31 @@
 ;; TODO: some slides might want to be absolute?
 
 (defn slide-tree []
-  [:g {:data-title "overview"}
-   intro/slides
-   stars/slides
-   appl/slides
-   svg/slides
-   path/slides
-   workflow/slides
-   color/slides
-   fo/slides
-   marcup/slides
-   legends/slides
-   principles/slides
-   anim/slides
-   freehand/slides
-   ico/slides
-   conclusion/slides])
+  (util/arrange [[intro/slides -500 0]
+                 [stars/slides 0 0]
+                 [astronomy/slides -1000 -500]
+                 [appl/slides 500 0]
+                 [why/slides 500 -500]
+                 [how/slides -3500 300]
+                 [paths/slides -2500 300]
+                 [groups/slides -4500 600]
+                 [workflow/slides 500 300]
+                 [color/slides -500 600]
+                 [fo/slides 0 600]
+                 [marcup/slides 500 600]
+                 [legends/slides -500 900]
+                 [principles/slides 0 900]
+                 [anim/slides 500 900]
+                 [freehand/slides -500 1200]
+                 [ico/slides 0 1200]
+                 [conclusion/slides 500 1200]]))
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))
 
 (defn alter-attrs [hiccup f]
   (cond (vector? hiccup)
-        (let [[tag & [attrs & more] :as children] hiccup]
+        (let [[tag & [attrs & more :as children]] hiccup]
           (if (map? attrs)
             (into [tag (f attrs)] (map #(alter-attrs % f)) more)
             (into [tag] (map #(alter-attrs % f)) children)))
@@ -66,7 +72,7 @@
   (let [z 50]
     (map-indexed
       (fn [i [x y]]
-        {:id        (slide-id i)
+        {:id (slide-id i)
          ;; TODO: not all slides are absolute
          #_#_:transform (str (to (* x z) (* y z)) " scale(0.5,0.5)")})
       ;; TODO: groups, TODO: don't need it?
@@ -111,8 +117,14 @@
   (assert (map? attrs))
   (into [tag attrs
          [:script {:xmlns:xlink "http://www.w3.org/1999/xlink"
-                   :xlink:href  "traction.js"
+                   :href        "traction.js"
                    :type        "text/ecmascript"}]
+         ;; need xmlns for remote stylesheets in svg
+         [:link {:xmlns  "http://www.w3.org/1999/xhtml"
+                 :rel    "stylesheet"
+                 :href   "https://fonts.googleapis.com/css2?family=Baloo+2:wght@400&display=swap"
+                 :as     "style"
+                 :onload "this.onload=null;this.rel='stylesheet'"}]
          #_[:script {:type "text/ecmascript"} "setTimeout(() => location.reload(), 2000)"]
          [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
           [:init
@@ -123,12 +135,19 @@
         hiccup))
 
 (defn html []
-  (str (hiccup2/html (tractionize (svg/svg (setup-slides (slide-tree)))))))
+  (->> (slide-tree)
+       (setup-slides)
+       (util/svg {:style {:background  (color/palette 12)
+                          :font-family "'Baloo 2'"}})
+       (tractionize)
+       (hiccup2/html)
+       (str)))
 
 (defn -main [& args]
   (spit "scraftisan.svg" (html)))
 
 (comment
+  (-main)
 
   (defonce reload
     (future

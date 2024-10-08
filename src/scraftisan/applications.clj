@@ -1,4 +1,5 @@
-(ns scraftisan.applications)
+(ns scraftisan.applications
+  (:require [scraftisan.util :as util]))
 
 (def applic
   [:g {:data-title ""}
@@ -20,8 +21,7 @@
    [:circle :r 10]])
 
 (def slides
-  [:g {:data-title "applications"}
-   applic
-   web-apps
-   images
-   diagrams])
+  (util/arrange [[applic 0 0]
+                 [web-apps 300 0]
+                 [images 300 300]
+                 [diagrams 0 300]]))

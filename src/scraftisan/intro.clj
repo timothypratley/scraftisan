@@ -1,12 +1,15 @@
-(ns scraftisan.intro)
+(ns scraftisan.intro
+  (:require [scraftisan.marcup :as marcup]
+            [scraftisan.util :as util]))
 
 (def intro
   [:g {:data-title ""}
-   [:p "* A little knowledge goes a long way
+   (marcup/mo "* A little knowledge goes a long way
 * Diagrams are valuable
 * SVG is awesome
-* Fast feedback"]])
+* Fast feedback")])
+
+(util/save-svg "intro.svg" intro)
 
 (def slides
-  [:g {:data-title ""}
-   intro])
+  (util/arrange [[intro 0 0]]))

@@ -1,4 +1,5 @@
-(ns scraftisan.legends)
+(ns scraftisan.legends
+  (:require [scraftisan.util :as util]))
 
 ;; All good diagramming principles flow from the legend
 ;; - good choices for communication
@@ -11,5 +12,4 @@
    [:p "hello world"]])
 
 (def slides
-  [:g {:data-title ""}
-   legends])
+  (util/arrange [[legends 0 0]]))

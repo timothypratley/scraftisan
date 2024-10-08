@@ -1,4 +1,8 @@
-(ns scraftisan.workflow)
+(ns scraftisan.workflow
+  (:require [scraftisan.util :as util]))
+
+(def tools
+  [:g {:data-title ""}])
 
 (def slides
-  [:g {:data-title ""}])
+  (util/arrange [[tools 0 0]]))

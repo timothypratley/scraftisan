@@ -1,5 +1,6 @@
 (ns scraftisan.color
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [scraftisan.util :as util]))
 
 (def palette
   ["#FCFFE0"                                                ;  0
@@ -41,6 +42,5 @@
    (palette-view palette)])
 
 (def slides
-  [:g {:data-title "colors"}
-   choosing-colors
-   palette-view])
+  (util/arrange [[choosing-colors 0 0]
+                 [palette-view 300 0]]))

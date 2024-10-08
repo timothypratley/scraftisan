@@ -1,4 +1,8 @@
-(ns scraftisan.freehand)
+(ns scraftisan.freehand
+  (:require [scraftisan.util :as util]))
+
+(def example
+  [:g {:data-title ""}])
 
 (def slides
-  [:g {:data-title ""}])
+  (util/arrange [[example 0 0]]))
