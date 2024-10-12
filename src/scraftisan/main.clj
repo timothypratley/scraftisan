@@ -11,11 +11,15 @@
             [scraftisan.html-in-svg :as fo]
             [scraftisan.intro :as intro]
             [scraftisan.iconography :as ico]
-            [scraftisan.legends :as legends]
+            [scraftisan.better :as better]
+            [scraftisan.diagrams :as diagrams]
+            [scraftisan.layout :as layout]
+            [scraftisan.visualizations :as visualizations]
             [scraftisan.marcup :as marcup]
             [scraftisan.paths :as paths]
             [scraftisan.groups :as groups]
             [scraftisan.principles :as principles]
+            [scraftisan.art :as art]
             [scraftisan.util :as util]
             [scraftisan.how :as how]
             [scraftisan.workflow :as workflow]
@@ -26,25 +30,49 @@
 ;; TODO: can we have animations within slides?
 ;; TODO: some slides might want to be absolute?
 
+(def intro
+  (util/arrange [intro/slides -500 0]
+                [stars/slides 0 0]
+                [astronomy/slides -1000 -500]))
+
+(def inspire
+  (util/arrange [appl/slides 0 0]
+                [anim/slides 0 900]
+                [why/slides 0 -500]))
+
+(def how-to-do-it
+  (util/arrange [how/slides 0 0]
+                [paths/slides -1000 300]
+                [groups/slides -2000 600]
+                [color/slides 2500 600]
+                [fo/slides 3000 600]
+                [marcup/slides 3500 600]
+                [workflow/slides 3500 300]))
+
+(def a-bit-about-diagrams
+  (util/arrange [better/slides 0 0]
+                [visualizations/slides 0 300]
+                [diagrams/slides 0 600]
+                [layout/slides 0 9000]))
+
+(def a-bit-about-images
+  (util/arrange [art/slides 0 0]
+                [principles/slides -3000 0]
+                [freehand/slides -6000 0]
+                [ico/slides 0 1200]))
+
+(def conclusion
+  (util/arrange []
+                []
+                [conclusion/slides 0 0]))
+
 (defn slide-tree []
-  (util/arrange [[intro/slides -500 0]
-                 [stars/slides 0 0]
-                 [astronomy/slides -1000 -500]
-                 [appl/slides 500 0]
-                 [why/slides 500 -500]
-                 [how/slides -3500 300]
-                 [paths/slides -2500 300]
-                 [groups/slides -4500 600]
-                 [workflow/slides 500 300]
-                 [color/slides -500 600]
-                 [fo/slides 0 600]
-                 [marcup/slides 500 600]
-                 [legends/slides -500 900]
-                 [principles/slides 0 900]
-                 [anim/slides 500 900]
-                 [freehand/slides -500 1200]
-                 [ico/slides 0 1200]
-                 [conclusion/slides 500 1200]]))
+  (util/arrange [intro 0 0]
+                [inspire 500 0]
+                [how-to-do-it -2500 300]
+                [a-bit-about-diagrams -2500 2000]
+                [a-bit-about-images 3000 3000]
+                [conclusion 500 1200]))
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))

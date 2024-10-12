@@ -22,7 +22,7 @@
             :href  "astronomy/copernicus-diagram.jpeg"}]])
 
 (def slides
-  (util/arrange [[ptolemy 0 0]
-                 [epicycles 150 0]
-                 [epicycles2 300 0]
-                 [copernicus 450 0]]))
+  (util/arrange [ptolemy 0 0]
+                [epicycles 150 0]
+                [epicycles2 300 0]
+                [copernicus 450 0]))

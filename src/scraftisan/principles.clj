@@ -95,21 +95,6 @@
   [:g {:data-title ""}
    [:circle {:r 10}]])
 
-(def art
-  [:g {:data-title ""
-       :transform  "translate(250,750)"}
-   [:image {"xlink:href" "images/willie-gillis-in-college-1946.jpg"
-            :width       100}]
-   [:image {"xlink:href" "images/Vincent_van_Gogh__Self_portrait.jpg"
-            :width       100
-            :x           250}]
-   [:image {"xlink:href" "images/PabloPicasoSelfPotrait.webp"
-            :width       100
-            :x           500}]
-   [:image {"xlink:href" "images/photo-wall.jpg"
-            :width       1000
-            :y           100}]])
-
 (def icons
   [:g {:data-title ""
        :transform  "translate(-1000,1500)"}
@@ -226,7 +211,7 @@
      [:path {:d "M -40.0 40.0 L -8 0 40.0 -40.0 8 0 Z"}]]]])
 
 (def slides
-  (util/arrange [[figure-ground 0 0]
+  (util/arrange [figure-ground 0 0]
                 [symmetry 200 0]
                 [similarity 400 0]
                 [proximity 600 0]
@@ -234,5 +219,4 @@
                 [common-fate 0 300]
                 [continuity 200 300]
                 [nand 400 300]
-                [art 600 300]
-                [icons 0 600]]))
+                [icons 0 600]))

@@ -1,5 +1,6 @@
-(ns scraftisan.legends
-  (:require [scraftisan.util :as util]))
+(ns scraftisan.diagrams
+  (:require [scraftisan.marcup :as marcup]
+            [scraftisan.util :as util]))
 
 ;; All good diagramming principles flow from the legend
 ;; - good choices for communication
@@ -8,8 +9,8 @@
 ;; but actually using or creating a logical framework helps.
 
 (def legends
-  [:g {:data-title ""}
-   [:p "hello world"]])
+  (marcup/mo "Ledgends never die
+"))
 
 (def slides
-  (util/arrange [[legends 0 0]]))
+  (util/arrange [legends 0 0]))

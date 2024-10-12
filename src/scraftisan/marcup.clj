@@ -2,7 +2,8 @@
   (:require [nextjournal.markdown :as md]
             [nextjournal.markdown.transform :as mdt]
             [scraftisan.color :as color]
-            [scraftisan.html-in-svg :as fo]))
+            [scraftisan.html-in-svg :as fo]
+            [scraftisan.util :as util]))
 
 (def mdctx
   (assoc mdt/default-hiccup-renderers
@@ -50,6 +51,5 @@
 * Copy the SVG code, and paste it into hiccup")])
 
 (def slides
-  [:g {:data-title "markup"}
-   markdown-example
-   making-use-of-svg])
+  (util/arrange [markdown-example 0 0]
+                [making-use-of-svg 400 0]))

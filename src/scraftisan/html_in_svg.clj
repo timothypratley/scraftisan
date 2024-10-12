@@ -16,4 +16,4 @@
        [:button "Click me!"]]))
 
 (def slides
-  (util/arrange [[foreign-objects 0 0]]))
+  (util/arrange [foreign-objects 0 0]))

@@ -2,7 +2,7 @@
   (:require [hiccup2.core :as hiccup2]
             [scicloj.kindly.v4.kind :as kind]))
 
-(defn arrange [slides]
+(defn arrange [& slides]
   (->> (for [[slide x y] slides]
          [:g {:transform (str "translate(" x "," y ")")} slide])
        (into [:g {:data-title ""}])))
