@@ -17,8 +17,9 @@
    [:circle :r 10]])
 
 (def diagrams
-  [:g {:data-title ""}
-   [:circle :r 10]])
+  [:g {:data-title ""
+       :transform "scale(0.3, 0.3)"}
+   [:image {:href "images/plantuml.svg" :width 313 :height 572}]])
 
 (def slides
   (util/arrange [applic 0 0]
