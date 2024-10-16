@@ -31,9 +31,10 @@
 ;; TODO: some slides might want to be absolute?
 
 (def intro
-  (util/arrange [intro/slides -500 0]
-                [stars/slides 0 0]
-                [astronomy/slides -1000 -500]))
+  (util/arrange "Stars"
+                [intro/slides -500 0]
+                [stars/slides 1000 1000]
+                [astronomy/slides 500 0]))
 
 (def inspire
   (util/arrange "Inspiration"
@@ -41,8 +42,9 @@
                 [anim/slides 500 300]
                 [why/slides 500 600]))
 
-(def how-to-do-it
-  (util/arrange [how/slides 0 0]
+(def how-to-svg
+  (util/arrange "How To SVG"
+                [how/slides 0 0]
                 [paths/slides -1000 300]
                 [groups/slides -2000 600]
                 [color/slides 2500 600]
@@ -51,29 +53,31 @@
                 [workflow/slides 3500 300]))
 
 (def a-bit-about-diagrams
-  (util/arrange [better/slides 0 0]
+  (util/arrange "A Bit About Diagrams"
+                [better/slides 0 0]
                 [visualizations/slides 0 300]
                 [diagrams/slides 0 600]
-                [layout/slides 0 9000]))
+                [layout/slides 0 900]))
 
 (def a-bit-about-images
-  (util/arrange [art/slides 0 0]
-                [principles/slides -3000 0]
-                [freehand/slides -6000 0]
-                [ico/slides 0 1200]))
+  (util/arrange "A Bit About Images"
+                [art/slides 0 0]
+                [principles/slides 1000 0]
+                [freehand/slides 0 300]
+                [ico/slides 1000 300]))
 
 (def conclusion
-  (util/arrange []
-                []
+  (util/arrange "Conclusion"
                 [conclusion/slides 0 0]))
 
 (defn slide-tree []
-  (util/arrange [intro 0 0]
+  (util/arrange "Crafting Artisanal Vector Graphics"
+                [intro -1000 -1000]
                 [inspire 500 0]
-                [how-to-do-it -2500 300]
-                [a-bit-about-diagrams -2500 2000]
-                [a-bit-about-images 3000 3000]
-                [conclusion 500 1200]))
+                [how-to-svg -2500 2000]
+                [a-bit-about-diagrams -2500 3000]
+                [a-bit-about-images 0 4000]
+                [conclusion 500 5000]))
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))
@@ -91,33 +95,15 @@
         :else
         hiccup))
 
-(defn to [x y]
-  (str "translate(" x "," y ")"))
-
 (defn slide-id [i]
-  (format "slide%03d" i))
-
-(defn slide-attrs []
-  (let [z 50]
-    (map-indexed
-      (fn [i [x y]]
-        {:id (slide-id i)
-         ;; TODO: not all slides are absolute
-         #_#_:transform (str (to (* x z) (* y z)) " scale(0.5,0.5)")})
-      ;; TODO: groups, TODO: don't need it?
-      (cycle (partition-all 2 (filter number? principles/hummi-path))))))
+  (str "step" i))
 
 (defn setup-slides [hiccup]
-  (let [a (atom (slide-attrs))
-        take-one! #(if-let [[head & more] @a]
-                     (do (reset! a more) head)
-                     (throw (ex-info "Not enough slide attrs"
-                                     {:id ::not-enough-slide-attrs})))]
-    (alter-attrs hiccup
-                 (fn [attrs]
-                   (if (contains? attrs :data-title)
-                     (merge attrs (take-one!))
-                     attrs)))))
+  (let [a (atom 0)]
+    (alter-attrs hiccup (fn [attrs]
+                          (if (contains? attrs :data-title)
+                            (assoc attrs :id (slide-id (swap! a inc)))
+                            attrs)))))
 
 (defn walk-hiccup
   "Returns a depth first sequence of all hiccup nodes [tag attr? & children]."
@@ -158,10 +144,11 @@
          [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
           [:init
            [:set {:duration "1000"}]]
-          ;; TODO: how many steps are there? need to count the actual slides...
           (for [i (range (count (slides-seq hiccup)))]
-            [:step {:view (slide-id i)}])]]
-        hiccup))
+            [:step {:view (slide-id (inc i))}])]]
+        [:g hiccup
+         ;; if you want to see the viewboxes
+         #_[:rect#rect {:width "300" :height "150" :fill "none" :stroke "red" :stroke-width "20"}]]))
 
 (defn html []
   (->> (slide-tree)
@@ -175,8 +162,12 @@
 (defn -main [& args]
   (spit "scraftisan.svg" (html)))
 
+(defn rewrite []
+  (require '[scraftisan.main] :reload-all)
+  (-main))
+
 (comment
-  (-main)
+  (rewrite)
 
   (defonce reload
     (future
