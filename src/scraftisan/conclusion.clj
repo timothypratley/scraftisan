@@ -5,4 +5,5 @@
   [:g {:data-title ""}])
 
 (def slides
-  (util/arrange [conclusion 0 0]))
+  (util/arrange "Conclusion"
+                [conclusion 0 0]))

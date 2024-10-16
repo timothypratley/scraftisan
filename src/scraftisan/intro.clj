@@ -9,7 +9,6 @@
 * SVG is awesome
 * Fast feedback")])
 
-(util/save-svg "intro.svg" intro)
-
 (def slides
-  (util/arrange [intro 0 0]))
+  (util/arrange "Introduction"
+                [intro 0 0]))

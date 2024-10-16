@@ -5,4 +5,5 @@
   [:g {:data-title ""}])
 
 (def slides
-  (util/arrange [tools 0 0]))
+  (util/arrange "Workflow"
+                [tools 0 0]))

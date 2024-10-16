@@ -51,5 +51,6 @@
 * Copy the SVG code, and paste it into hiccup")])
 
 (def slides
-  (util/arrange [markdown-example 0 0]
+  (util/arrange "Markdown in SVG"
+                [markdown-example 0 0]
                 [making-use-of-svg 400 0]))

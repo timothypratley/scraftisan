@@ -42,5 +42,6 @@
    (palette-view palette)])
 
 (def slides
-  (util/arrange [choosing-colors 0 0]
+  (util/arrange "Color"
+                [choosing-colors 0 0]
                 [palette-view 300 0]))

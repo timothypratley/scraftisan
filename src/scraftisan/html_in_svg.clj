@@ -3,17 +3,18 @@
 
 ;; TODO: is foreignObject a real thing or can you just set the xmlns?
 (defn fo [props & body]
-  [:foreignObject {:style {:overflow "visible"
-                           :width    1
-                           :height   1}}
+  [:foreignObject {:width      "400"
+                   :height     "200"
+                   :style  {:overflow "visible"}}
    (into [:div (util/deep-merge {:xmlns "http://www.w3.org/1999/xhtml"}
                                 props)]
          body)])
 
 (def foreign-objects
-  (fo {:style {:width "100%"}}
-      [:div "Hello world"
-       [:button "Click me!"]]))
+  [:g {:data-title ""}
+   (fo {} [:div "Hello world"
+           [:button "Click me!"]])])
 
 (def slides
-  (util/arrange [foreign-objects 0 0]))
+  (util/arrange "HTML in SVG"
+                [foreign-objects 0 0]))

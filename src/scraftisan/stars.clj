@@ -1,7 +1,8 @@
 (ns scraftisan.stars
   (:require [clojure.string :as str]
             [scicloj.kindly.v4.kind :as kind]
-            [scraftisan.color :as color]))
+            [scraftisan.color :as color]
+            [scraftisan.marcup :as marcup]))
 
 (def constellations
   (array-map
@@ -70,9 +71,9 @@
 
 (def thematic
   [:g {:data-title ""}
-   [:p
-    "* a little bit of knowledge can take you a long way
-    * to the stars!"]])
+   (marcup/md "a little bit of knowledge can take you a long way
+
+to the stars!")])
 
 ;; TODO: gradients didn't work - probably defs need to be at the top, but maybe we don't want gradients anyway
 (def saturn
@@ -246,7 +247,7 @@
     [:path {:d "M3.782,14.884v0.696c0.243-0.568,0.511-1.122,0.798-1.665L3.782,14.884z"}]]])
 
 (def slides
-  [:g {:data-title ""}
+  [:g {:data-title "Stars"}
    thematic
    saturn
    night-sky

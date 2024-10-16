@@ -150,5 +150,6 @@
    ])
 
 (def slides
-  (util/arrange [paths-are-cool 0 0]
+  (util/arrange "Paths"
+                [paths-are-cool 0 0]
                 [landscape 0 0]))

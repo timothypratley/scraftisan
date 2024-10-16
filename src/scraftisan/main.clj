@@ -36,9 +36,10 @@
                 [astronomy/slides -1000 -500]))
 
 (def inspire
-  (util/arrange [appl/slides -500 -600]
-                [anim/slides 0 900]
-                [why/slides 0 -500]))
+  (util/arrange "Inspiration"
+                [appl/slides 0 0]
+                [anim/slides 500 300]
+                [why/slides 500 600]))
 
 (def how-to-do-it
   (util/arrange [how/slides 0 0]

@@ -29,7 +29,8 @@
   (marcup/md "Tools"))
 
 (def slides
-  (util/arrange [why 0 0]
+  (util/arrange "Why SVG"
+                [why 0 0]
                 [why1 400 0]
                 [why2 800 0]
                 [why3 1200 0]

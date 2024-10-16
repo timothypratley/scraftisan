@@ -211,7 +211,8 @@
      [:path {:d "M -40.0 40.0 L -8 0 40.0 -40.0 8 0 Z"}]]]])
 
 (def slides
-  (util/arrange [figure-ground 0 0]
+  (util/arrange "Principles"
+                [figure-ground 0 0]
                 [symmetry 200 0]
                 [similarity 400 0]
                 [proximity 600 0]

@@ -13,4 +13,5 @@
 "))
 
 (def slides
-  (util/arrange [legends 0 0]))
+  (util/arrange "Diagrams"
+                [legends 0 0]))

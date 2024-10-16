@@ -53,6 +53,7 @@
 
 
 (def slides
-  (util/arrange [g 0 0]
+  (util/arrange "Groups"
+                [g 0 0]
                 [transform 400 0]
                 [stroke 0 300]))

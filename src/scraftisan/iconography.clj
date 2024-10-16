@@ -17,6 +17,7 @@
 ;;(util/save "favicon.svg" (svg/svg favicon))
 
 (def slides
-  (util/arrange [scicloj-icons 0 0]
+  (util/arrange "Icons"
+                [scicloj-icons 0 0]
                 [favicon 500 500]
                 [hummi-icon 500 800]))

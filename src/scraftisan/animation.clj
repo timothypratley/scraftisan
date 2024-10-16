@@ -6,4 +6,5 @@
    [:p "I'm a spider!"]])
 
 (def slides
-  (util/arrange [spider 0 0]))
+  (util/arrange "Animation"
+                [spider 0 0]))

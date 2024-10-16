@@ -38,5 +38,6 @@ Hiccup
              :fill (color/palette 0)}]])
 
 (def slides
-  (util/arrange [what-is-svg 0 0]
+  (util/arrange "How"
+                [what-is-svg 0 0]
                 [what-is-hiccup 400 0]))

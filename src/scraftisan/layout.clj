@@ -28,6 +28,7 @@ Unsolved, but some interesting takes:
 * Webcola"))
 
 (def slides
-  (util/arrange [layouts 0 0]
+  (util/arrange "Layouts"
+                [layouts 0 0]
                 [automatic-layouts 400 0]
                 [libraries 800 0]))

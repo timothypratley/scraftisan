@@ -22,7 +22,8 @@
    [:image {:href "images/plantuml.svg" :width 313 :height 572}]])
 
 (def slides
-  (util/arrange [applic 0 0]
+  (util/arrange "Applications"
+                [applic 0 0]
                 [web-apps 300 0]
                 [images 300 300]
                 [diagrams 0 300]))

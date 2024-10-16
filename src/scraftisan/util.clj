@@ -2,11 +2,6 @@
   (:require [hiccup2.core :as hiccup2]
             [scicloj.kindly.v4.kind :as kind]))
 
-(defn arrange [& slides]
-  (->> (for [[slide x y] slides]
-         [:g {:transform (str "translate(" x "," y ")")} slide])
-       (into [:g {:data-title ""}])))
-
 (defn deep-merge
   "Recursively merges maps only."
   [& xs]
@@ -17,6 +12,38 @@
                    (merge-with m a b)
                    b))
                {})))
+
+;; TODO: dedup
+(defn fo [props & body]
+  [:foreignObject {:style {:overflow "visible"
+                           :width    "250"
+                           :height   "40"}}
+   (into [:div (deep-merge {:xmlns "http://www.w3.org/1999/xhtml"}
+                           props)]
+         body)])
+
+(defn arrange [title & slides]
+  (let [col (rand-nth ["red"
+                       "brown"
+                       "purple"
+                       "pink"
+                       "orange"
+                       "gold"
+                       "blue"
+                       "darkblue"
+                       "teal"
+                       "green"
+                       "darkgreen"])]
+    (conj (into [:g {:data-title title
+                     :style      {:outline        (str "solid 10px " col)
+                                  :outline-offset "10px"}}]
+                (for [[slide x y] slides]
+                  [:g {:transform (str "translate(" x "," y ")")}
+                   slide]))
+          (fo {:style {:color      "white"
+                       :background col
+                       :font-size "50px"}}
+              title))))
 
 (defn svg [props & body]
   (kind/hiccup

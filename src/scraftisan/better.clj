@@ -35,7 +35,8 @@ The right knowledge can solve any problem."))
 The easiest way to make a graph is to make a diagram."))
 
 (def slides
-  (util/arrange [prelude 0 0]
+  (util/arrange "Better"
+                [prelude 0 0]
                 [thinking 400 0]
                 [better 800 0]
                 [knowledge 1200 0]

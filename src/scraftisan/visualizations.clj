@@ -68,4 +68,5 @@
 				c3.332-3.332,8.732-3.332,12.064,0l35.9,35.9C491.5,381.302,491.5,386.703,488.168,390.035z"}]]])
 
 (def slides
-  (util/arrange [visuals 0 0]))
+  (util/arrange "Visualizations"
+                [visuals 0 0]))
