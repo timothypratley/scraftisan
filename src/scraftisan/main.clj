@@ -32,9 +32,9 @@
 
 (def intro
   (util/arrange "Stars"
-                [intro/slides -500 0]
-                [stars/slides 1000 1000]
-                [astronomy/slides 500 0]))
+                [intro/slides -2000 0]
+                [stars/slides 0 0]
+                [astronomy/slides -2000 300]))
 
 (def inspire
   (util/arrange "Inspiration"
@@ -72,12 +72,12 @@
 
 (defn slide-tree []
   (util/arrange "Crafting Artisanal Vector Graphics"
-                [intro -1000 -1000]
-                [inspire 500 0]
-                [how-to-svg -2500 2000]
+                [intro 0 0]
+                [inspire 3500 500]
+                [how-to-svg -3500 1000]
                 [a-bit-about-diagrams -2500 3000]
-                [a-bit-about-images 0 4000]
-                [conclusion 500 5000]))
+                [a-bit-about-images 2000 4000]
+                [conclusion -1000 7000]))
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))

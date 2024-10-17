@@ -13,11 +13,12 @@
                    b))
                {})))
 
-;; TODO: dedup
 (defn fo [props & body]
-  [:foreignObject {:style {:overflow "visible"
-                           :width    "250"
-                           :height   "40"}}
+  [:foreignObject {:style {:color     "white"
+                           :font-size "50px"
+                           :overflow  "visible"
+                           :width     "250"
+                           :height    "40"}}
    (into [:div (deep-merge {:xmlns "http://www.w3.org/1999/xhtml"}
                            props)]
          body)])
@@ -40,9 +41,7 @@
                 (for [[slide x y] slides]
                   [:g {:transform (str "translate(" x "," y ")")}
                    slide]))
-          (fo {:style {:color      "white"
-                       :background col
-                       :font-size "50px"}}
+          (fo {:style {:background col}}
               title))))
 
 (defn svg [props & body]
