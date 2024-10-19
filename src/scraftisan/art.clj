@@ -27,9 +27,9 @@
             :width 1000}]])
 
 (def slides
-  (util/arrange "Art"
-                [willie 0 0]
-                [vincent 250 0]
-                [pablo 500 0]
-                [monet 750 0]
-                [wall -25 300]))
+  (util/arrange "Beauty"
+                [wall -25 0]
+                [willie 0 400]
+                [vincent 250 400]
+                [pablo 500 400]
+                [monet 750 400]))

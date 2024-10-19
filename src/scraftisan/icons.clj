@@ -18,6 +18,6 @@
 
 (def slides
   (util/arrange "Icons"
-                [scicloj-icons 0 0]
-                [favicon 500 500]
-                [hummi-icon 500 800]))
+                [scicloj-icons 400 0]
+                [favicon 400 500]
+                [hummi-icon 400 800]))
