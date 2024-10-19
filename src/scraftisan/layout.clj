@@ -27,8 +27,14 @@ Unsolved, but some interesting takes:
 * Eclipse Layout Kernel
 * Webcola"))
 
+(def graphs
+  (marcup/mo "Graph
+
+> A set of things and a set of relations between them"))
+
 (def slides
   (util/arrange "Layouts"
-                [layouts 0 0]
-                [automatic-layouts 400 0]
-                [libraries 800 0]))
+                [layouts 400 0]
+                [automatic-layouts 800 0]
+                [libraries 1200 0]
+                [graphs 1600 0]))

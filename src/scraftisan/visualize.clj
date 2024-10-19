@@ -1,12 +1,11 @@
-(ns scraftisan.visualizations
-  (:require [scraftisan.marcup :as marcup]
+(ns scraftisan.visualize
+  (:require [scraftisan.color :as color]
             [scraftisan.util :as util]))
 
 (def visuals
   [:g {:data-title ""}
-   (marcup/mo "Visualization
-")
-   [:g {:transform "translate(150,50) scale(0.3,0.3)"}
+   [:g {:transform "scale(0.4,0.4)"
+        :fill (color/palette 11)}
     [:path {:d "M157.869,358.402c0,4.713,3.82,8.533,8.533,8.533h119.467c4.713,0,8.533-3.82,8.533-8.533s-3.821-8.533-8.533-8.533
 				H166.402C161.689,349.868,157.869,353.689,157.869,358.402z"}]
     [:path {:d "M157.869,324.268c0,4.713,3.82,8.533,8.533,8.533h76.8c4.713,0,8.533-3.82,8.533-8.533s-3.82-8.533-8.533-8.533h-76.8
@@ -67,6 +66,18 @@
 				H21.333z M488.168,390.035c-3.332,3.332-8.732,3.332-12.064,0l-35.9-35.9c-3.332-3.332-3.332-8.732,0-12.064
 				c3.332-3.332,8.732-3.332,12.064,0l35.9,35.9C491.5,381.302,491.5,386.703,488.168,390.035z"}]]])
 
+(def iff
+  [:g {:data-title ""}
+   [:image {:href "diagrams/factors.png"
+            :width 200}]])
+
+(def sociogram
+  [:g {:data-title ""}
+   [:image {:href "diagrams/sociogram.png"
+            :width 200}]])
+
 (def slides
-  (util/arrange "Visualizations"
-                [visuals 0 0]))
+  (util/arrange "Visualize"
+                [visuals 400 0]
+                [iff 800 0]
+                [sociogram 1200 0]))

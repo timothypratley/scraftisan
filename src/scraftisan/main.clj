@@ -11,10 +11,10 @@
             [scraftisan.html-in-svg :as fo]
             [scraftisan.intro :as intro]
             [scraftisan.iconography :as ico]
-            [scraftisan.better :as better]
-            [scraftisan.diagrams :as diagrams]
+            [scraftisan.think :as think]
+            [scraftisan.communicate :as communicate]
             [scraftisan.layout :as layout]
-            [scraftisan.visualizations :as visualizations]
+            [scraftisan.visualize :as visualize]
             [scraftisan.marcup :as marcup]
             [scraftisan.paths :as paths]
             [scraftisan.groups :as groups]
@@ -53,14 +53,14 @@
                 [workflow/slides 3500 300]))
 
 (def a-bit-about-diagrams
-  (util/arrange "A Bit About Diagrams"
-                [better/slides 0 0]
-                [visualizations/slides 0 300]
-                [diagrams/slides 0 600]
-                [layout/slides 0 900]))
+  (util/arrange "Diagrams"
+                [think/slides 400 200]
+                [visualize/slides 400 600]
+                [communicate/slides 400 1000]
+                [layout/slides 400 1400]))
 
 (def a-bit-about-images
-  (util/arrange "A Bit About Images"
+  (util/arrange "Art"
                 [art/slides 0 0]
                 [principles/slides 1000 0]
                 [freehand/slides 0 300]
@@ -75,9 +75,9 @@
                 [intro 0 0]
                 [inspire 3500 500]
                 [how-to-svg -3500 1000]
-                [a-bit-about-diagrams -2500 3000]
-                [a-bit-about-images 2000 4000]
-                [conclusion -1000 7000]))
+                [a-bit-about-diagrams -1500 6500]
+                [a-bit-about-images 2500 3000]
+                [conclusion -2000 3500]))
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))
