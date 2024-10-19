@@ -10,7 +10,7 @@
             [scraftisan.freehand :as freehand]
             [scraftisan.html-in-svg :as fo]
             [scraftisan.intro :as intro]
-            [scraftisan.iconography :as ico]
+            [scraftisan.icons :as icons]
             [scraftisan.think :as think]
             [scraftisan.communicate :as communicate]
             [scraftisan.layout :as layout]
@@ -44,9 +44,9 @@
 
 (def how-to-svg
   (util/arrange "How To SVG"
-                [how/slides 0 0]
+                [how/slides 400 0]
                 [paths/slides -1000 300]
-                [groups/slides -2000 600]
+                [groups/slides -2500 600]
                 [color/slides 2500 600]
                 [fo/slides 3000 600]
                 [marcup/slides 3500 600]
@@ -61,10 +61,10 @@
 
 (def a-bit-about-images
   (util/arrange "Art"
-                [art/slides 0 0]
-                [principles/slides 1000 0]
-                [freehand/slides 0 300]
-                [ico/slides 1000 300]))
+                [art/slides 400 0]
+                [principles/slides 400 800]
+                [freehand/slides 400 1600]
+                [icons/slides 400 2400]))
 
 (def conclusion
   (util/arrange "Conclusion"

@@ -23,7 +23,7 @@
 
 (def slides
   (util/arrange "Astronomy"
-                [ptolemy 0 0]
-                [epicycles 150 0]
-                [epicycles2 300 0]
-                [copernicus 450 0]))
+                [ptolemy 300 0]
+                [epicycles 450 0]
+                [epicycles2 600 0]
+                [copernicus 750 0]))

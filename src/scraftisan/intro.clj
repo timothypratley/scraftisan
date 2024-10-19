@@ -20,5 +20,5 @@
 (def slides
   (util/arrange "Introduction"
                 [title -80000 -60000]
-                [intro 0 0]
+                [intro 400 0]
                 [bottom-right 80000 60000]))

@@ -39,5 +39,5 @@ Hiccup
 
 (def slides
   (util/arrange "How"
-                [what-is-svg 0 0]
-                [what-is-hiccup 400 0]))
+                [what-is-svg 400 0]
+                [what-is-hiccup 800 0]))

@@ -70,7 +70,8 @@
      night-sky]))
 
 (def thematic
-  [:g {:data-title ""}
+  [:g {:data-title ""
+       :transform "translate(-1000,-1000)"}
    (marcup/md "a little bit of knowledge can take you a long way
 
 to the stars!")])

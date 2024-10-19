@@ -37,7 +37,7 @@
                        "darkgreen"])]
     (conj (into [:g {:data-title title
                      :style      {:outline        (str "solid 10px " col)
-                                  :outline-offset "10px"}}]
+                                  :outline-offset "50px"}}]
                 (for [[slide x y] slides]
                   [:g {:transform (str "translate(" x "," y ")")}
                    slide]))
