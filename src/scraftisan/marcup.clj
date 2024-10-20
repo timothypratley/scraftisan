@@ -44,13 +44,13 @@
 (def making-use-of-svg
   [:g {:data-title "making use of svg"}
    (mo "## Making use of existing SVG
-* Converting SVG (XML) to hiccup
-* Cursive offers to do it when you copy paste
-* Does emacs?
-* Font awesome SVGs are useful (https://fontawesome.com/search?q=code&o=r&m=free&f=classic)
-* Copy the SVG code, and paste it into hiccup")])
+* [fontawesome.com](https://fontawesome.com/search?q=code&o=r&m=free&f=classic)
+* [svgrepo.com](https://www.svgrepo.com/vectors/elephant/)
+* `<image href=\"...\">`
+* Cursive and Calva
+* SVG to hiccup [html2hiccup](http://html2hiccup.buttercloud.com/)")])
 
 (def slides
   (util/arrange "Markdown in SVG"
-                [markdown-example 0 0]
-                [making-use-of-svg 400 0]))
+                [markdown-example 400 0]
+                [making-use-of-svg 800 0]))
