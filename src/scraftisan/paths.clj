@@ -77,7 +77,7 @@
                              (p 100 -20, 40)
                              (p 200 0, 50)
                              (p 300 -40, 40)
-                             (p 400 0, 50)]))])
+                             (drop-last 2 (p 400 0, 50))]))])
 
    [:path {:transform "translate(0,500) scale(2,2)"
            :stroke    "#5555ff"
