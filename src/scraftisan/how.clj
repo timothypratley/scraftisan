@@ -2,6 +2,7 @@
   (:require [scraftisan.aliens :as aliens]
             [scraftisan.color :as color]
             [scraftisan.marcup :as marcup]
+            [scraftisan.html-in-svg :as fo]
             [scraftisan.util :as util]))
 
 (def file-icon
@@ -16,10 +17,9 @@
 <svg xmlns=\"http://www.w3.org/2000/svg\">
 ```
 
-namespace is a required
+The namespace is easy to forget but necessary!
 
-Hiccup
-
+Hiccup:
 ```
 [:svg {:xmlns \"http://www.w3.org/2000/svg\"} …]
 ```")
@@ -38,8 +38,72 @@ Hiccup
              :cy   100
              :fill (color/palette 0)}]])
 
+(def snowman
+  [:g {:data-title ""}
+   (marcup/md "```
+ [:circle {:r 20}]
+ [:circle {:r 30 :cy 45}]
+ [:circle {:r 40 :cy 105}]
+```")
+   [:g {:fill (color/palette 0) :transform "translate(300, 50)"}
+    [:circle {:r 20}]
+    [:circle {:r 30 :cy 45}]
+    [:circle {:r 40 :cy 105}]]])
+
+(def fill
+  [:g {:data-title ""}
+   (marcup/md "Fill color")
+    [:g {:data-title "" :transform "translate(180, -20) scale(0.4)"}
+     (marcup/md "")
+     [:g {:transform "scale(0.9)"}
+      (fo/fo {:style {:color (color/palette 0)}}
+             (marcup/marcup "```
+  [:circle {:r 3 :cx  -8 :cy -10 :fill \"black\"}]
+  [:circle {:r 3 :cx   8 :cy -10 :fill \"black\"}]
+  [:circle {:r 4 :cx   0 :cy   0 :fill \"orange\"}]
+  [:circle {:r 2 :cx   0 :cy  10 :fill \"gray\"}]
+  [:circle {:r 2 :cx  -7 :cy   8 :fill \"gray\"}]
+  [:circle {:r 2 :cx -12 :cy   4 :fill \"gray\"}]
+  [:circle {:r 2 :cx   7 :cy   8 :fill \"gray\"}]
+  [:circle {:r 2 :cx  12 :cy   4 :fill \"gray\"}]
+```"))]]
+   [:g {:fill (color/palette 0) :transform "translate(300, 50)"}
+    [:circle {:r 20}]
+    [:circle {:r 30 :cy 45}]
+    [:circle {:r 40 :cy 105}]
+
+    [:circle {:r 3 :cx  -8 :cy -10 :fill "black"}]
+    [:circle {:r 3 :cx   8 :cy -10 :fill "black"}]
+    [:circle {:r 4 :cx   0 :cy   0 :fill "orange"}]
+    [:circle {:r 2 :cx   0 :cy  10 :fill "gray"}]
+    [:circle {:r 2 :cx  -7 :cy   8 :fill "gray"}]
+    [:circle {:r 2 :cx -12 :cy   4 :fill "gray"}]
+    [:circle {:r 2 :cx   7 :cy   8 :fill "gray"}]
+    [:circle {:r 2 :cx  12 :cy   4 :fill "gray"}]
+
+    ]])
+
+(def stroke
+  [:g {:data-title ""}
+   (marcup/md "Stroke and fill
+
+```
+[:circle {:r            20
+          :fill         \"green\"
+          :stroke       \"red\"
+          :stroke-width 3}]
+```")
+   [:circle {:r            20
+             :cx           250
+             :cy           180
+             :fill         "green"
+             :stroke       "red"
+             :stroke-width 3}]])
+
 (def slides
   (util/arrange "How"
                 [aliens/smart 0 200]
                 [what-is-svg 400 0]
-                [what-is-hiccup 800 0]))
+                [what-is-hiccup 800 0]
+                [snowman 0 300]
+                [fill 400 300]))

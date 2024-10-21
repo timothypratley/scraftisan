@@ -35,27 +35,8 @@
 [:g {:transform \"translate(10,10) rotate(15)\"} ...]
 ```")])
 
-(def stroke
-  [:g {:data-title ""}
-   (marcup/md "Stroke and fill
-
-```
-[:circle {:r            20
-          :fill         \"green\"
-          :stroke       \"red\"
-          :stroke-width 3}]
-```")
-   [:circle {:r            20
-             :cx           250
-             :cy           180
-             :fill         "green"
-             :stroke       "red"
-             :stroke-width 3}]])
-
-
 (def slides
   (util/arrange "Groups"
                 [aliens/stalks 0 200]
                 [g 400 0]
-                [transform 800 0]
-                [stroke 400 300]))
+                [transform 800 0]))
