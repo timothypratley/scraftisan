@@ -38,9 +38,9 @@
 
 (def inspire
   (util/arrange "Inspiration"
-                [appl/slides 0 0]
-                [anim/slides 500 300]
-                [why/slides 500 600]))
+                [appl/slides 350 0]
+                [anim/slides 1600 0]
+                [why/slides 1000 600]))
 
 (def how-to-svg
   (util/arrange "How To SVG"
@@ -73,7 +73,7 @@
 (defn slide-tree []
   (util/arrange "Crafting Artisanal Vector Graphics"
                 [intro 0 0]
-                [inspire 3500 500]
+                [inspire 2000 500]
                 [how-to-svg -3500 1000]
                 [a-bit-about-diagrams -1500 6500]
                 [a-bit-about-images 2500 3000]
