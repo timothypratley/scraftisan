@@ -1,6 +1,7 @@
 (ns scraftisan.main
   (:require [clojure.string :as str]
             [hiccup2.core :as hiccup2]
+            [scraftisan.aliens :as aliens]
             [scraftisan.applications :as appl]
             [scraftisan.astronomy :as astronomy]
             [scraftisan.stars :as stars]
@@ -38,12 +39,14 @@
 
 (def inspire
   (util/arrange "Inspiration"
+                [aliens/octo1 0 200]
                 [appl/slides 350 0]
                 [anim/slides 1600 0]
                 [why/slides 1000 600]))
 
 (def how-to-svg
   (util/arrange "How To SVG"
+                [aliens/octo2 0 200]
                 [how/slides 400 0]
                 [paths/slides -1000 300]
                 [groups/slides -2500 600]
@@ -54,6 +57,7 @@
 
 (def a-bit-about-diagrams
   (util/arrange "Diagrams"
+                [aliens/octo3 0 200]
                 [think/slides 400 0]
                 [visualize/slides 400 700]
                 [communicate/slides 400 1400]
@@ -61,6 +65,7 @@
 
 (def a-bit-about-images
   (util/arrange "Art"
+                [aliens/octo4 0 200]
                 [beauty/slides 400 0]
                 [gestalt/slides 400 1000]
                 [icons/slides 1000 2500]
@@ -68,6 +73,7 @@
 
 (def conclusion
   (util/arrange "Conclusion"
+                [aliens/cute 0 200]
                 [conclusion/slides 0 0]))
 
 (defn slide-tree []

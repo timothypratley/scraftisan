@@ -1,5 +1,6 @@
 (ns scraftisan.astronomy
-  (:require [scraftisan.util :as util]))
+  (:require [scraftisan.aliens :as aliens]
+            [scraftisan.util :as util]))
 
 (def ptolemy
   [:g {:data-title ""}
@@ -23,6 +24,7 @@
 
 (def slides
   (util/arrange "Astronomy"
+                [aliens/blob 0 200]
                 [ptolemy 300 0]
                 [epicycles 450 0]
                 [epicycles2 600 0]

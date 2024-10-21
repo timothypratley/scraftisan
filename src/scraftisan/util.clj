@@ -77,3 +77,9 @@
 
 (defn save-svg [f x]
   (save f (svg {} x)))
+
+(defn alien [s]
+  [:g {:data-title ""
+       :stroke "lightgreen"}
+   [:image {:href  (str "aliens/" s ".svg")
+            :width 100}]])

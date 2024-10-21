@@ -1,5 +1,6 @@
 (ns scraftisan.how
-  (:require [scraftisan.color :as color]
+  (:require [scraftisan.aliens :as aliens]
+            [scraftisan.color :as color]
             [scraftisan.marcup :as marcup]
             [scraftisan.util :as util]))
 
@@ -39,5 +40,6 @@ Hiccup
 
 (def slides
   (util/arrange "How"
+                [aliens/smart 0 200]
                 [what-is-svg 400 0]
                 [what-is-hiccup 800 0]))

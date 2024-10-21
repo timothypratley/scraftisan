@@ -1,8 +1,9 @@
 (ns scraftisan.conclusion
-  (:require [scraftisan.color :as color]
+  (:require [scraftisan.aliens :as aliens]
+            [scraftisan.color :as color]
             [scraftisan.util :as util]))
 
-(def conclusion
+(def svg-logo
   [:g {:data-title ""
        :fill (color/palette 11)}
    [:g [:g [:path {:d "M459.216,184.742V77.792L348.234,0H52.783v184.742H26.392v205.856h26.392V512h406.433V390.598h26.392V184.742H459.216z     M353.649,23.151l72.278,50.746h-72.278V23.151z M68.618,15.835h269.196v73.897h105.567v95.01H68.618V15.835z M443.381,496.165    H68.618V390.598h374.763V496.165z M469.773,374.763H42.227V200.577h427.546V374.763z"}]]]
@@ -18,4 +19,4 @@
 
 (def slides
   (util/arrange "Conclusion"
-                [conclusion 400 0]))
+                [svg-logo 400 0]))

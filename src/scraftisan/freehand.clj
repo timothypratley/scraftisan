@@ -1,5 +1,6 @@
 (ns scraftisan.freehand
-  (:require [scraftisan.color :as color]
+  (:require [scraftisan.aliens :as aliens]
+            [scraftisan.color :as color]
             [scraftisan.util :as util]))
 
 (def rich-bbq
@@ -322,5 +323,6 @@
 
 (def slides
   (util/arrange "Freehand"
+                [aliens/cheer 0 200]
                 [rich-bbq 400 0]
                 [rich-chess 900 0]))

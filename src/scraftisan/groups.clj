@@ -1,5 +1,6 @@
 (ns scraftisan.groups
-  (:require [scraftisan.color :as color]
+  (:require [scraftisan.aliens :as aliens]
+            [scraftisan.color :as color]
             [scraftisan.marcup :as marcup]
             [scraftisan.util :as util]))
 
@@ -54,6 +55,7 @@
 
 (def slides
   (util/arrange "Groups"
+                [aliens/stalks 0 200]
                 [g 400 0]
                 [transform 800 0]
                 [stroke 400 300]))

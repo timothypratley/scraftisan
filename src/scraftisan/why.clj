@@ -1,5 +1,6 @@
 (ns scraftisan.why
-  (:require [scraftisan.marcup :as marcup]
+  (:require [scraftisan.aliens :as aliens]
+            [scraftisan.marcup :as marcup]
             [scraftisan.util :as util]))
 
 (def why
@@ -17,5 +18,6 @@
 
 (def slides
   (util/arrange "Why SVG"
+                [aliens/slug 0 200]
                 [why 400 0]
                 [sweet 800 0]))

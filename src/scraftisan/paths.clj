@@ -1,6 +1,7 @@
 (ns scraftisan.paths
   (:require [clojure.string :as str]
             [clojure.math :as math]
+            [scraftisan.aliens :as aliens]
             [scraftisan.color :as color]
             [scraftisan.marcup :as marcup]
             [scraftisan.util :as util]))
@@ -151,5 +152,6 @@
 
 (def slides
   (util/arrange "Paths"
+                [aliens/tall 0 200]
                 [paths-are-cool 400 0]
                 [landscape 400 0]))
