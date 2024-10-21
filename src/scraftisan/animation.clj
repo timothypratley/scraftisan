@@ -3,7 +3,7 @@
             [hiccup.element :refer [javascript-tag]]))
 
 (def spider
-  [:g {:id "spider-translate", :style "fill:#eeeeee; stroke: #000000; stroke-width: 1", :transform "translate(0.24258959,-0.24606636)"}
+  [:g {:data-title "", :id "spider-translate", :style "fill:#eeeeee; stroke: #000000; stroke-width: 1", :transform "translate(0.24258959,-0.24606636)"}
    (javascript-tag (slurp "scripts/animate-spider.js"))
    [:g {:id "spider-rotate", :transform "rotate(8.0403073,128.29552,-264.83472)"}
     [:g {:id "g3852"}
