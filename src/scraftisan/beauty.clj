@@ -1,4 +1,4 @@
-(ns scraftisan.art
+(ns scraftisan.beauty
   (:require [scraftisan.util :as util]))
 
 (def willie
@@ -28,8 +28,8 @@
 
 (def slides
   (util/arrange "Beauty"
-                [wall -25 0]
-                [willie 0 400]
-                [vincent 250 400]
-                [pablo 500 400]
-                [monet 750 400]))
+                [wall 375 0]
+                [willie 400 450]
+                [pablo 650 450]
+                [vincent 900 450]
+                [monet 1150 450]))

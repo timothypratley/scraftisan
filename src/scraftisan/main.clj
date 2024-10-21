@@ -18,8 +18,8 @@
             [scraftisan.marcup :as marcup]
             [scraftisan.paths :as paths]
             [scraftisan.groups :as groups]
-            [scraftisan.principles :as principles]
-            [scraftisan.art :as art]
+            [scraftisan.gestalt :as gestalt]
+            [scraftisan.beauty :as beauty]
             [scraftisan.util :as util]
             [scraftisan.how :as how]
             [scraftisan.workflow :as workflow]
@@ -54,30 +54,31 @@
 
 (def a-bit-about-diagrams
   (util/arrange "Diagrams"
-                [think/slides 400 200]
-                [visualize/slides 400 600]
-                [communicate/slides 400 1000]
-                [layout/slides 400 1400]))
+                [think/slides 400 0]
+                [visualize/slides 400 700]
+                [communicate/slides 400 1400]
+                [layout/slides 400 2100]))
 
 (def a-bit-about-images
   (util/arrange "Art"
-                [art/slides 400 0]
-                [principles/slides 400 800]
-                [freehand/slides 400 1600]
-                [icons/slides 400 2400]))
+                [beauty/slides 400 0]
+                [gestalt/slides 400 1000]
+                [icons/slides 1000 2500]
+                [freehand/slides 1000 4200]))
 
 (def conclusion
   (util/arrange "Conclusion"
                 [conclusion/slides 0 0]))
 
 (defn slide-tree []
-  (util/arrange "Crafting Artisanal Vector Graphics"
-                [intro 0 0]
-                [inspire 2000 500]
-                [how-to-svg -3500 1000]
-                [a-bit-about-diagrams -1500 6500]
-                [a-bit-about-images 2500 3000]
-                [conclusion -2000 3500]))
+  (util/with-seed
+    (util/arrange "Crafting Artisanal Vector Graphics"
+                  [intro 0 0]
+                  [inspire 2000 500]
+                  [how-to-svg -3500 1000]
+                  [a-bit-about-diagrams -1500 6500]
+                  [a-bit-about-images 2500 3000]
+                  [conclusion -2000 3500])))
 
 (defn path [t [x y & more]]
   (str "M" x " " y " " t (str/join " " more)))
@@ -142,10 +143,12 @@
                  :onload "this.onload=null;this.rel='stylesheet'"}]
          #_[:script {:type "text/ecmascript"} "setTimeout(() => location.reload(), 2000)"]
          [:steps {:xmlns "http://chouser.n01se.net/traction/config"}
-          [:init
-           [:set {:duration "1000"}]]
+          [:init [:set {:duration "1000"}]]
           (for [i (range (count (slides-seq hiccup)))]
-            [:step {:view (slide-id (inc i))}])]]
+            [:step {:view (slide-id (inc i))}])
+          [:step {:view (slide-id 8)}]
+          [:step {:view (slide-id 15)}]
+          [:step {:view (slide-id 1)}]]]
         [:g hiccup
          ;; if you want to see the viewboxes
          #_[:rect#rect {:width "300" :height "150" :fill "none" :stroke "red" :stroke-width "20"}]]))

@@ -1,5 +1,6 @@
 (ns scraftisan.icons
   (:require [scraftisan.color :as color]
+            [scraftisan.html-in-svg :as fo]
             [scraftisan.util :as util]))
 
 (def scicloj-icons
@@ -119,15 +120,84 @@
 (def favicon
   [:g {:data-title "favicon"}
    [:circle {:r 128 :fill (color/palette 1)}]])
-
-(def hummi-icon
-  [:g {:data-title ""}
-   [:circle {:r 128 :fill (color/palette 1)}]])
-
 ;;(util/save "favicon.svg" (svg/svg favicon))
+
+(def scicloj-palette
+  [:g {:data-title ""}
+   (fo/fo {}
+          [:div {:style "align-items:center;display:grid;gap:10;grid-template-columns:repeat(3, 1fr);justify-content:center;text-align:center;"}
+           [:div
+            [:div {:style "background-color:#FFFFFF;color:black;padding:10;"}
+             [:div "0"]
+             [:div "#FFFFFF"]
+             [:div "white background"]]]
+           [:div [:div {:style "background-color:#62B132;color:white;padding:10;"}
+                  [:div "1"]
+                  [:div "#62B132"]
+                  [:div "Clojure green"]]]
+           [:div [:div {:style "background-color:#5881D8;color:white;padding:10;"}
+                  [:div "2"]
+                  [:div "#5881D8"]
+                  [:div "Clojure blue"]]]
+           [:div [:div {:style "background-color:#91DC47;color:black;padding:10;"}
+                  [:div "3"]
+                  [:div "#91DC47"]
+                  [:div "Clojure light green"]]]
+           [:div [:div {:style "background-color:#8FB5FE;color:black;padding:10;"}
+                  [:div "4"]
+                  [:div "#8FB5FE"]
+                  [:div "Clojure light blue"]]]
+           [:div [:div {:style "background-color:#F26767;color:white;padding:10;"}
+                  [:div "5"]
+                  [:div "#F26767"]
+                  [:div "coral red"]]]
+           [:div [:div {:style "background-color:#FFCD52;color:black;padding:10;"}
+                  [:div "6"]
+                  [:div "#FFCD52"]
+                  [:div "golden yellow"]]]
+           [:div [:div {:style "background-color:#A86F40;color:white;padding:10;"}
+                  [:div "7"]
+                  [:div "#A86F40"]
+                  [:div "chocolate brown"]]]
+           [:div [:div {:style "background-color:#E0E0E0;color:black;padding:10;"}
+                  [:div "8"]
+                  [:div "#E0E0E0"]
+                  [:div "light gray"]]]
+           [:div [:div {:style "background-color:#808080;color:white;padding:10;"}
+                  [:div "9"]
+                  [:div "#808080"]
+                  [:div "medium gray"]]]
+           [:div [:div {:style "background-color:#2F4179;color:white;padding:10;"}
+                  [:div "10"]
+                  [:div "#2F4179"]
+                  [:div "midnight blue"]]]])])
+
+(def recommendations
+  [:g {:data-title ""}
+   (fo/fo {}
+          [:div {:style "align-items:center;display:grid;gap:10;grid-template-columns:repeat(7, 1fr);justify-content:center;text-align:center;"}
+           [:div [:div [:h4 "background"]
+                  [:div [:svg {:width 64
+                               :fill  "none" :stroke-linecap "round" :stroke-linejoin "round" :stroke-width "31" :viewBox "-128 -128 256 256" :xmlns "http://www.w3.org/2000/svg"} [:circle {:cx "0" :cy "0" :fill "#FFFFFF" :r "128" :stroke "none"}]]]]]
+           [:div [:strong "+"]]
+           [:div [:div [:h4 "parens"]
+                  [:div [:svg {:width 64
+                               :fill "none" :stroke-linecap "round" :stroke-linejoin "round" :stroke-width "31" :viewBox "-128 -128 256 256" :xmlns "http://www.w3.org/2000/svg"} [:g {:stroke-linecap "butt"} [:path {:d "M -128,0 Q -112,0 -112,20 -100,100 -20,112 0,112 0,128" :stroke "#62B132"}]
+                                                                                                                                                                                   [:path {:d "M 128,0 Q 112,0 112,-20 100,-100 20,-112  0,-112 0,-128" :stroke "#5881D8"}]]]]]]
+           [:div [:strong "+"]]
+           [:div [:div [:h4 "heart"]
+                  [:div [:svg {:width 64
+                               :fill "none" :stroke-linecap "round" :stroke-linejoin "round" :stroke-width "31" :viewBox "-128 -128 256 256" :xmlns "http://www.w3.org/2000/svg"} [:g#heart {:transform "translate(-120,-120) scale(10)"} [:path {:d "M 12.0 7.2 C 10.5 5.6 8.1 5.2 6.3 6.7 C 4.5 8.1 4.2 10.6 5.7 12.4 L 12.0 18.3 L 18.3 12.4 C 19.7 10.6 19.5 8.1 17.7 6.7 C 15.8 5.2 13.4 5.6 12.0 7.2 Z" :fill "#F26767"}]]]]]]
+           [:div [:strong "="]]
+           [:div [:div [:h4 "kindly"]
+                  [:div [:svg {:width 64
+                               :fill "none" :stroke-linecap "round" :stroke-linejoin "round" :stroke-width "31" :viewBox "-128 -128 256 256" :xmlns "http://www.w3.org/2000/svg"} [:circle {:cx "0" :cy "0" :fill "#FFFFFF" :r "128" :stroke "none"}]
+                         [:g {:stroke-linecap "butt"} [:path {:d "M -128,0 Q -112,0 -112,20 -100,100 -20,112 0,112 0,128" :stroke "#62B132"}]
+                          [:path {:d "M 128,0 Q 112,0 112,-20 100,-100 20,-112  0,-112 0,-128" :stroke "#5881D8"}]]
+                         [:g#heart {:transform "translate(-120,-120) scale(10)"} [:path {:d "M 12.0 7.2 C 10.5 5.6 8.1 5.2 6.3 6.7 C 4.5 8.1 4.2 10.6 5.7 12.4 L 12.0 18.3 L 18.3 12.4 C 19.7 10.6 19.5 8.1 17.7 6.7 C 15.8 5.2 13.4 5.6 12.0 7.2 Z" :fill "#F26767"}]]]]]]])])
 
 (def slides
   (util/arrange "Icons"
-                [scicloj-icons 400 0]
-                [favicon 400 500]
-                [hummi-icon 400 800]))
+                [recommendations 400 0]
+                [scicloj-palette 1200 0]
+                [scicloj-icons 400 600]))

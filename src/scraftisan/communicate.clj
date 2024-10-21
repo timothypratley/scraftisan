@@ -23,8 +23,8 @@
 ;; but actually using or creating a logical framework helps.
 
 (def legends
-  (marcup/mo "Ledgends never die
-"))
+  [:g {:data-title ""}
+   (marcup/mo "Legends never die")])
 
 (def slides
   (util/arrange "Share"

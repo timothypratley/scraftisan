@@ -1,6 +1,24 @@
 (ns scraftisan.util
   (:require [hiccup2.core :as hiccup2]
-            [scicloj.kindly.v4.kind :as kind]))
+            [scicloj.kindly.v4.kind :as kind])
+  (:import (java.util Random)))
+
+(def ^:dynamic *random*
+  (Random. 314159265359))
+
+(defn srand
+  ([] (.nextDouble *random*))
+  ([n] (* n (srand))))
+
+(defn srand-int [n]
+  (.nextInt *random* n))
+
+(defn srand-nth [coll]
+  (nth coll (srand-int (count coll))))
+
+(defmacro with-seed [& body]
+  `(binding [*random* (Random. 314159265359)]
+     ~@body))
 
 (defn deep-merge
   "Recursively merges maps only."
@@ -24,7 +42,7 @@
          body)])
 
 (defn arrange [title & slides]
-  (let [col (rand-nth ["red"
+  (let [col (srand-nth ["red"
                        "brown"
                        "purple"
                        "pink"

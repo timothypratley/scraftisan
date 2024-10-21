@@ -3,34 +3,35 @@
             [scraftisan.util :as util]))
 
 (def layouts
-  (marcup/mo "Layouts
+  [:g {:data-title ""}
+   (marcup/mo "Layouts
 
 * Manual
 * Automatic
-* Mixed"))
+* Mixed")])
 
 (def automatic-layouts
-  (marcup/mo "Should be easy right?
+  [:g {:data-title ""}
+   (marcup/mo "Should be easy right?
 
 Unsolved, but some interesting takes:
 
 * trees
 * gravity/charge simulations
-* constraint solvers
-"
-
-             ))
+* constraint solvers")])
 
 (def libraries
-  (marcup/mo "Libraries
+  [:g {:data-title ""}
+   (marcup/mo "Libraries
 
 * Eclipse Layout Kernel
-* Webcola"))
+* Webcola")])
 
 (def graphs
-  (marcup/mo "Graph
+  [:g {:data-title ""}
+   (marcup/mo "Graph
 
-> A set of things and a set of relations between them"))
+> A set of things and a set of relations between them")])
 
 (def slides
   (util/arrange "Layouts"
