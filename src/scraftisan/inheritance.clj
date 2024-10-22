@@ -1,7 +1,13 @@
-(ns scraftisan.inheritance)
+(ns scraftisan.inheritance
+  (:require [scraftisan.color :as color]))
 
 (def diagram
   [:g {:data-title "", :id "graph1", :class "graph", :transform "scale(0.2 0.2) translate(4 2387)"}
+   [:rect {:fill (color/palette 0)
+           :x -100
+           :y -2500
+           :width 2200
+           :height 2600}]
    [:title {:id "title1"} "_anonymous_0"]"<!-- Clojure Interface -->"  "<!-- Java Interface -->"  "<!-- Clojure class -->"  "<!-- badges -->"
    [:g {:id "g271", :transform "translate(733.82499,-1220.2349)"}
     [:polygon {:data-title "", :fill "none" :points "1226,-1164 1226,-746 8,-746 8,-1164"}]

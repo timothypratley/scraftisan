@@ -152,8 +152,8 @@
           [:init [:set {:duration "1000"}]]
           (for [i (range (count (slides-seq hiccup)))]
             [:step {:view (slide-id (inc i))}])
-          [:step {:view (slide-id 8)}]
-          [:step {:view (slide-id 16)}]
+          [:step {:view (slide-id 5)}]
+          [:step {:view (slide-id 14)}]
           [:step {:view (slide-id 1)}]]]
         [:g hiccup
          ;; if you want to see the viewboxes

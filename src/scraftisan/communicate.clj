@@ -25,9 +25,11 @@
 
 (def legends
   [:g {:data-title ""}
-   (marcup/mo "Define nodes
-
-Define relationships")])
+   (marcup/mo "Define nodes and relationships")
+   [:image {:x 100
+            :y 50
+            :href "images/legends.svg"
+            :width 150}]])
 
 ;; TODO: show an example
 
