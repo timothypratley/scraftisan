@@ -6,4 +6,4 @@
 
 (def slides
   (util/arrange "Workflow"
-                [tools 0 0]))
+                [tools 400 0]))

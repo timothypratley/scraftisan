@@ -50,10 +50,10 @@
                 [how/slides 400 0]
                 [groups/slides -1000 300]
                 [paths/slides -2500 600]
-                [color/slides 2500 600]
-                [fo/slides 3000 600]
-                [marcup/slides 3500 600]
-                [workflow/slides 3500 300]))
+                [color/slides 0 1500]
+                [fo/slides 2000 300]
+                [marcup/slides 2000 600]
+                [workflow/slides 2000 1200]))
 
 (def a-bit-about-diagrams
   (util/arrange "Diagrams"

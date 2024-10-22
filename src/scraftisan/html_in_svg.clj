@@ -17,4 +17,4 @@
 
 (def slides
   (util/arrange "HTML in SVG"
-                [foreign-objects 0 0]))
+                [foreign-objects 400 0]))

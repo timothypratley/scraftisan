@@ -1,6 +1,6 @@
 document.addEventListener('click', () => {
   const svg = document.getElementsByTagName('svg')[0]
-  svg.requestFullscreen()
+//  svg.requestFullscreen()
   svg.setAttribute('width',  window.innerWidth  + 'px')
   svg.setAttribute('height', window.innerHeight + 'px')
 })
