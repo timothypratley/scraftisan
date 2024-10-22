@@ -1,5 +1,6 @@
 (ns scraftisan.visualize
   (:require [scraftisan.color :as color]
+            [scraftisan.marcup :as marcup]
             [scraftisan.util :as util]))
 
 (def visuals
@@ -71,6 +72,35 @@
    [:image {:href "diagrams/factors.png"
             :width 200}]])
 
+(def case-study
+  [:g {:data-title ""}
+   (marcup/mo "> Janet, who is 10 years old, lives alone with her unemployed mother.
+> They moved a few years ago into a decaying post-war estate on the edge of a small industrial town in the North-East of England...")])
+
+(def factors
+  [:g {:data-title ""}
+   (marcup/mo "1. Lives alone with her mother
+2. Moved a few years ago
+3. Previous home demolished
+4. Overweight
+5. Considered slow thinking")
+   ])
+
+(def initial
+  [:g {:data-title ""}
+   [:image {:href "diagrams/case-study-1.png"
+            :width 200}]])
+
+(def iff-final
+  [:g {:data-title ""}
+   [:image {:href "diagrams/factors.png"
+            :width 200}]])
+
+(def loops
+  [:g {:data-title ""}
+   [:image {:href "diagrams/case-study-2.png"
+            :width 200}]])
+
 (def sociogram
   [:g {:data-title ""}
    [:image {:href "diagrams/sociogram.png"
@@ -80,4 +110,9 @@
   (util/arrange "Visualize"
                 [visuals 400 0]
                 [iff 800 0]
-                [sociogram 1200 0]))
+                [case-study 1200 0]
+                [factors 1600 0]
+                [initial 2000 0]
+                [loops 2400 0]
+                [iff-final 2800 0]
+                [sociogram 400 400]))
