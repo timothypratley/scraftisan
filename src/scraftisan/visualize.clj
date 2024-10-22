@@ -104,15 +104,15 @@
 (def sociogram
   [:g {:data-title ""}
    [:image {:href "diagrams/sociogram.png"
-            :width 200}]])
+            :width 400}]])
 
 (def slides
   (util/arrange "Visualize"
                 [visuals 400 0]
                 [iff 800 0]
-                [case-study 1200 0]
-                [factors 1600 0]
+                [case-study 1100 0]
+                [factors 1500 0]
                 [initial 2000 0]
-                [loops 2400 0]
-                [iff-final 2800 0]
-                [sociogram 400 400]))
+                [loops 2300 0]
+                [iff-final 2600 0]
+                [sociogram 2000 400]))

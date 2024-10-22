@@ -63,9 +63,16 @@
   (util/arrange "Slides"
                 [presentation 400 0]))
 
+#_(def chart
+  [:g {:data-title ""}])
+
+#_(def charts
+  (util/arrange "Charts"))
+
 (def slides
   (util/arrange "For"
                 [documentation 400 0]
+                #_[charts 400 1200]
                 [icons 400 1200]
                 [web-apps 400 1500]
                 [presentations 400 1900]))

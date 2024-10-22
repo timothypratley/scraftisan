@@ -59,7 +59,7 @@
   (util/arrange "Diagrams"
                 [aliens/octo3 0 200]
                 [think/slides 400 0]
-                [visualize/slides 400 700]
+                [visualize/slides 400 400]
                 [communicate/slides 400 1400]
                 [layout/slides 400 2100]))
 
@@ -82,7 +82,7 @@
                   [intro 0 0]
                   [inspire 2000 -1000]
                   [how-to-svg -3500 1000]
-                  [a-bit-about-diagrams -1500 6500]
+                  [a-bit-about-diagrams -1500 5500]
                   [a-bit-about-images 2500 3000]
                   [conclusion -2000 3500])))
 

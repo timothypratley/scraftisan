@@ -45,8 +45,12 @@
 (def markdown-example
   [:g {:data-title "markdown example"}
    (mo "## This is **markdown**
-* Because we like markdown
-* It's nice")])
+
+\"## This is **markdown**\"
+
+-> `nextjournal/markdown` -> hiccup
+
+-> `[:foreignObject ...]`")])
 
 (def making-use-of-svg
   [:g {:data-title "making use of svg"}

@@ -16,6 +16,8 @@
   [:g {:data-title ""}
    [:image {:href "images/spectrum.svg"}]])
 
+;; TODO: Debuggable! (maybe just open the console during the presentation)
+
 (def slides
   (util/arrange "Why SVG"
                 [aliens/slug 0 200]
