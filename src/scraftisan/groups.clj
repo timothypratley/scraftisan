@@ -6,34 +6,39 @@
 
 (def g
   [:g {:data-title ""}
-   (marcup/md "Groups
+   (marcup/md "Group: Common attributes for each
 ```
-[:g [:circle {:r 20}]
+[:g {:fill \"yellow\"
+     :stroke \"green\"
+     :stroke-width 3}
+    [:circle {:r 20}]
     [:circle {:cx 50 :r 20}]]
-```
-
-```
-[:g {:transform ...
-     :stroke    ...
-     :fill      ...}
 ```")
    [:g {:transform "translate(250,180)"
-        :fill      (color/palette 0)}
+        :fill      (color/palette 8)
+        :stroke    (color/palette 1)
+        :stroke-width 3}
     [:circle {:r 20}]
     [:circle {:cx 50 :r 20}]]])
 
 (def transform
-  [:g {:data-title ""}
-   (marcup/md "Transforms
-
-* translate(x,y)
-* scale(x,y)
-* rotate(deg)
-* rotate(deg,x,y)
-
+  (let [heart (list [:text "🤍"] [:text "🔹"])]
+    [:g {:data-title ""}
+     (marcup/md "Group: Transform whole
 ```
-[:g {:transform \"translate(10,10) rotate(15)\"} ...]
-```")])
+[:g [:text \"🤍\"] [:text \"🔹\"]]
+
+[:g {:transform \"rotate(30)\"} …]
+
+[:g {:transform \"scale(2, 0.8)\"} …]
+
+[:g {:transform \"translate(0, 20)\"} …]
+```")
+     [:g {:transform "translate(320, 80)"}
+      [:g {:transform ""} heart]
+      [:g {:transform "translate(0,30)  rotate(30)"} heart]
+      [:g {:transform "translate(0,60)  scale(2, 0.8)"} heart]
+      [:g {:transform "translate(0,90)  translate(20, 0)"} heart]]]))
 
 (def slides
   (util/arrange "Groups"
