@@ -1,9 +1,15 @@
 (ns scraftisan.workflow
-  (:require [scraftisan.util :as util]))
+  (:require [scraftisan.marcup :as marcup]
+            [scraftisan.util :as util]))
 
 (def tools
-  [:g {:data-title ""}])
+  [:g {:data-title ""}
+   (marcup/mo "Inkscape
+
+Clay
+
+Browser")])
 
 (def slides
-  (util/arrange "Workflow"
+  (util/arrange "Tools"
                 [tools 400 0]))

@@ -41,18 +41,31 @@
                            props)]
          body)])
 
+(def dark-palette
+  ["#4C5331"  ; Olive Green (Complementary to #FCFFE0)
+   "#607A30"  ; Medium Olive Green (Complementary to #D0F040)
+   "#554D79"  ; Dark Lavender (Complementary to #E6E6FA)
+   "#37606A"  ; Deep Aquamarine (Complementary to #D0F7FF)
+   "#846847"  ; Warm Sand Brown (Complementary to #FCECC5)
+   "#7A476A"  ; Deep Rose (Complementary to #FCE2F7)
+   "#48684B"  ; Deep Forest Green (Complementary to #E0FFD0)
+   "#7A4F5A"  ; Muted Raspberry (Complementary to #F0D0E0)
+   "#2C7A68"  ; Rich Teal (Complementary to #40D0A0)
+   "#B35656"  ; Rich Coral (Complementary to #FF8080)
+   "#5F6133"  ; Olive Drab (Complementary to #F0F0C8)
+   "#8A7740"  ; Golden Brown (Complementary to #AFA050)
+   "#2A3147"  ; Navy Slate (Neutral dark, complements brighter shades)
+   "#3F4856"  ; Cool Slate Blue (Adds dimension to the palette)
+   "#574A71"  ; Dusty Plum (A purple-gray mix for variety)
+   "#3B6167"  ; Muted Aqua (Balances warm and cool tones)
+   "#586267"  ; Cool Gray (For a slightly neutral option)
+   "#75534C"  ; Muted Brick Red (Earthy, grounding tone)
+   "#3A5A4A"  ; Forest Green (Natural dark tone)
+   "#644B52"  ; Smoky Mauve (Hints of red and purple)
+   ])
+
 (defn arrange [title & slides]
-  (let [col (srand-nth ["red"
-                       "brown"
-                       "purple"
-                       "pink"
-                       "orange"
-                       "gold"
-                       "blue"
-                       "darkblue"
-                       "teal"
-                       "green"
-                       "darkgreen"])]
+  (let [col (srand-nth dark-palette)]
     (conj (into [:g {:data-title title
                      :style      {:outline        (str "solid 10px " col)
                                   :outline-offset "50px"}}]

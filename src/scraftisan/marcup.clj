@@ -2,7 +2,6 @@
   (:require [nextjournal.markdown :as md]
             [nextjournal.markdown.transform :as mdt]
             [scraftisan.color :as color]
-            [scraftisan.html-in-svg :as fo]
             [scraftisan.util :as util]))
 
 (def mdctx
@@ -16,8 +15,16 @@
   [s]
   (md/->hiccup mdctx s))
 
+(defn fo [props & body]
+  [:foreignObject {:width      "400"
+                   :height     "200"
+                   :style  {:overflow "visible"}}
+   (into [:div (util/deep-merge {:xmlns "http://www.w3.org/1999/xhtml"}
+                                props)]
+         body)])
+
 (defn mo [s]
-  (fo/fo {:style {:width         "350px"
+  (fo {:style {:width         "350px"
                   :min-height    "200px"
                   :background    (color/palette 0)
                   :border        (str "solid 3px " (color/palette 10))
@@ -26,7 +33,7 @@
          (marcup s)))
 
 (defn md [s]
-  (fo/fo {:style {:width         "350px"
+  (fo {:style {:width         "350px"
                   :min-height    "200px"
                   :color         (color/palette 0)
                   :background    (color/palette 12)

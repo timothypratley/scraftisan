@@ -52,8 +52,8 @@
                 [paths/slides -2500 600]
                 [color/slides 0 1500]
                 [fo/slides 2000 300]
-                [marcup/slides 2000 600]
-                [workflow/slides 2000 1200]))
+                [marcup/slides 2000 800]
+                [workflow/slides 2000 1300]))
 
 (def a-bit-about-diagrams
   (util/arrange "Diagrams"
