@@ -78,7 +78,7 @@
 
 (defn slide-tree []
   (util/with-seed
-    (util/arrange "Crafting Artisanal Vector Graphics"
+    (util/arrange "Stars"
                   [intro 0 0]
                   [inspire 2000 -1000]
                   [how-to-svg -3500 1000]
