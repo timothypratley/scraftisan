@@ -48,8 +48,8 @@
   (util/arrange "How To SVG"
                 [aliens/octo2 0 200]
                 [how/slides 400 0]
-                [paths/slides -1000 300]
-                [groups/slides -2500 600]
+                [groups/slides -1000 300]
+                [paths/slides -2500 600]
                 [color/slides 2500 600]
                 [fo/slides 3000 600]
                 [marcup/slides 3500 600]

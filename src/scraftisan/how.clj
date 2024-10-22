@@ -79,31 +79,67 @@ Hiccup:
     [:circle {:r 2 :cx  -7 :cy   8 :fill "gray"}]
     [:circle {:r 2 :cx -12 :cy   4 :fill "gray"}]
     [:circle {:r 2 :cx   7 :cy   8 :fill "gray"}]
-    [:circle {:r 2 :cx  12 :cy   4 :fill "gray"}]
-
-    ]])
+    [:circle {:r 2 :cx  12 :cy   4 :fill "gray"}]]])
 
 (def stroke
   [:g {:data-title ""}
-   (marcup/md "Stroke and fill
+   [:g {:fill (color/palette 0) :transform "translate(300, 50)"}
+    [:circle {:r 40 :cy 105 :stroke-width 3 :stroke "black"}]
+    [:circle {:r 30 :cy  45 :stroke-width 2 :stroke "black"}]
+    [:circle {:r 20         :stroke-width 1 :stroke "black"}]
 
+    [:circle {:r 3 :cx  -8 :cy -10 :fill "black"}]
+    [:circle {:r 3 :cx   8 :cy -10 :fill "black"}]
+    [:circle {:r 4 :cx   0 :cy   0 :fill "orange"}]
+    [:circle {:r 2 :cx   0 :cy  10 :fill "gray"}]
+    [:circle {:r 2 :cx  -7 :cy   8 :fill "gray"}]
+    [:circle {:r 2 :cx -12 :cy   4 :fill "gray"}]
+    [:circle {:r 2 :cx   7 :cy   8 :fill "gray"}]
+    [:circle {:r 2 :cx  12 :cy   4 :fill "gray"}]]
+   (fo/fo {} (marcup/marcup "stroke & stroke-width
 ```
-[:circle {:r            20
-          :fill         \"green\"
-          :stroke       \"red\"
-          :stroke-width 3}]
-```")
-   [:circle {:r            20
-             :cx           250
-             :cy           180
-             :fill         "green"
-             :stroke       "red"
-             :stroke-width 3}]])
+[:circle {:r 40 :cy 105
+          :stroke-width 3 :stroke \"black\"}]
+[:circle {:r 30 :cy  45
+          :stroke-width 2 :stroke \"black\"}]
+[:circle {:r 20
+          :stroke-width 1 :stroke \"black\"}]
+```"))])
+
+(def g
+  [:g {:data-title ""}
+   [:g {:fill (color/palette 0) :transform "translate(400, 50) rotate(60)"}
+    [:circle {:r 40 :cy 105 :stroke-width 3 :stroke "black"}]
+    [:circle {:r 30 :cy  45 :stroke-width 2 :stroke "black"}]
+    [:circle {:r 20         :stroke-width 1 :stroke "black"}]
+
+    [:circle {:r 3 :cx  -8 :cy -10 :fill "black"}]
+    [:circle {:r 3 :cx   8 :cy -10 :fill "black"}]
+    [:circle {:r 4 :cx   0 :cy   0 :fill "orange"}]
+    [:circle {:r 2 :cx   0 :cy  10 :fill "gray"}]
+    [:circle {:r 2 :cx  -7 :cy   8 :fill "gray"}]
+    [:circle {:r 2 :cx -12 :cy   4 :fill "gray"}]
+    [:circle {:r 2 :cx   7 :cy   8 :fill "gray"}]
+    [:circle {:r 2 :cx  12 :cy   4 :fill "gray"}]]
+   [:g {:transform "rotate(-30)"}
+    (fo/fo {} (marcup/marcup "transform
+```
+[:g {:transform \"rotate(60)\"}
+ [:circle {:r 40 :cy 105
+           :stroke-width 3 :stroke \"black\"}]
+ [:circle {:r 30 :cy  45
+           :stroke-width 2 :stroke \"black\"}]
+ [:circle {:r 20
+           :stroke-width 1 :stroke \"black\"}]]
+```"))]])
+
 
 (def slides
-  (util/arrange "How"
+  (util/arrange "Basic Syntax"
                 [aliens/smart 0 200]
-                [what-is-svg 400 0]
-                [what-is-hiccup 800 0]
-                [snowman 0 300]
-                [fill 400 300]))
+                [what-is-svg 0 300]
+                [what-is-hiccup 400 300]
+                [snowman 400 0]
+                [fill 800 0]
+                [stroke 800 300]
+                [g 800 600]))
