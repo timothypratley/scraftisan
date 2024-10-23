@@ -35,11 +35,11 @@
 
 (def choosing-colors
   [:g {:data-title ""}
-   (palette-view ["red" "green" "blue" "yellow"])])
+   (palette-view ["red" "green" "blue" "yellow" "aqua" "pink"])])
 
 (def pp
   [:g {:data-title ""}
-   (palette-view palette)])
+   (palette-view (butlast palette))])
 
 (def slides
   (util/arrange "Color"

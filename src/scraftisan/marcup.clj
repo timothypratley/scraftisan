@@ -52,16 +52,6 @@
 
 -> `[:foreignObject ...]`")])
 
-(def making-use-of-svg
-  [:g {:data-title "making use of svg"}
-   (mo "## Making use of existing SVG
-* [fontawesome.com](https://fontawesome.com/search?q=code&o=r&m=free&f=classic)
-* [svgrepo.com](https://www.svgrepo.com/vectors/elephant/)
-* `<image href=\"...\">`
-* Cursive and Calva
-* SVG to hiccup [html2hiccup](http://html2hiccup.buttercloud.com/)")])
-
 (def slides
   (util/arrange "Markdown in SVG"
-                [markdown-example 400 0]
-                [making-use-of-svg 800 0]))
+                [markdown-example 400 0]))
