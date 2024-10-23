@@ -108,11 +108,11 @@
 
 (def slides
   (util/arrange "Visualize"
-                [visuals 400 0]
-                [iff 800 0]
-                [case-study 1100 0]
-                [factors 1500 0]
-                [initial 2000 0]
-                [loops 2300 0]
-                [iff-final 2600 0]
+                [visuals 0 200]
+                [iff 400 0]
+                [case-study 700 0]
+                [factors 1100 0]
+                [initial 1600 0]
+                [loops 1900 0]
+                [iff-final 2200 0]
                 [sociogram 2000 400]))
