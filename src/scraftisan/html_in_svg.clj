@@ -12,7 +12,8 @@
          body)])
 
 (def fooo
-  (marcup/mo
+  [:g {:data-title ""}
+   (marcup/mo
     "
 ```
 [:foreignObject {:width 100}
@@ -20,7 +21,7 @@
  [:div {:xmlns \"http://www.w3.org/1999/xhtml\"}
   [:div [:h2 \"Hello world\"]
         [:button \"Click me!\"]]]]
-```"))
+```")])
 
 (def foreign-objects
   [:g {:data-title ""}

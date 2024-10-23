@@ -1,13 +1,11 @@
 (ns scraftisan.groups
   (:require [scraftisan.aliens :as aliens]
-            [scraftisan.color :as color]
             [scraftisan.marcup :as marcup]
             [scraftisan.util :as util]))
 
 (def g
   [:g {:data-title ""}
-   (marcup/md "Group: Common attributes for each
-```
+   (marcup/md "```
 [:g {:fill \"yellow\"
      :stroke \"green\"
      :stroke-width 4}
@@ -22,13 +20,13 @@
     [:circle {:cx 50 :r 20}]]])
 
 (def transform
-  (let [heart (list [:text "🤍"]
-[:text "🔹"])]
+  (let [heart (list [:text "🤍"] [:text "🔹"])]
     [:g {:data-title ""}
-     (marcup/md "Group: Transform whole
-```
-[:g [:text \"🤍\"]
-[:text \"🔹\"]]
+     (marcup/md "```
+
+
+
+[:g [:text \"🤍\"] [:text \"🔹\"]]
 
 [:g {:transform \"rotate(30)\"} …]
 

@@ -1,10 +1,3 @@
-document.addEventListener('click', () => {
-  const svg = document.getElementsByTagName('svg')[0]
-//  svg.requestFullscreen()
-  svg.setAttribute('width',  window.innerWidth  + 'px')
-  svg.setAttribute('height', window.innerHeight + 'px')
-})
-
 const setAngle = (id, angle) => {
   const g = document.getElementById(id)
   const r = g && g.getAttribute('transform')
