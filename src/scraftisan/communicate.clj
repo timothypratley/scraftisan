@@ -25,16 +25,39 @@
 
 (def legends
   [:g {:data-title ""}
-   (marcup/mo "")
-   [:image {:x 100
-            :y 20
-            :href "images/legends.svg"
+   [:image {:href "images/legends.svg"
             :width 150}]])
 
-;; TODO: show an example
+(def encoding
+  [:g {:data-title ""}
+   [:image {:href "images/encoding.svg"
+            :width 150}]])
+
+(def food
+  [:g {:data-title ""}
+   [:image {:x 0 :y 0
+            :width 38
+            :href "diagrams/food-dark.svg"}]
+   [:image {:x 40 :y 0
+            :width 38
+            :href "diagrams/food-apricot.svg"}]
+   [:image {:x 80 :y 0
+            :width 38
+            :href "diagrams/food-pastel.svg"}]
+   [:image {:x 0 :y 40
+            :width 38
+            :href "diagrams/food-warm.svg"}]
+   [:image {:x 40 :y 40
+            :width 38
+            :href "diagrams/food-grey.svg"}]
+   [:image {:x 80 :y 40
+            :width 38
+            :href "diagrams/food-hummi.svg"}]])
 
 (def slides
   (util/arrange "Share"
                 [sketching 20 120]
                 [communicating 800 0]
-                [legends 1200 0]))
+                [legends 1200 0]
+                [encoding 1600 0]
+                [food 2000 0]))
