@@ -118,7 +118,12 @@
 (def common-fate
   [:g {:data-title ""}
    [:g {:transform "translate(220,220) scale(2.5)"}
-    (for [[x y] [[-96 -64] [-32 0] [8 -72] [-64 -32] [0 16]]]
+    (for [[x y]
+[[-96 -64]
+[-32 0]
+[8 -72]
+[-64 -32]
+[0 16]]]
       [:path {:transform (str "translate(" x "," y ") scale(-0.4,0.4)")
               :d         (str/join " " hummi-path)
               :fill      (color/palette 0)}])]

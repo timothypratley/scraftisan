@@ -10,23 +10,25 @@
 ```
 [:g {:fill \"yellow\"
      :stroke \"green\"
-     :stroke-width 3}
+     :stroke-width 4}
     [:circle {:r 20}]
     [:circle {:cx 50 :r 20}]]
 ```")
    [:g {:transform "translate(250,180)"
-        :fill      (color/palette 8)
-        :stroke    (color/palette 1)
-        :stroke-width 3}
+        :fill      "yellow"
+        :stroke    "green"
+        :stroke-width 4}
     [:circle {:r 20}]
     [:circle {:cx 50 :r 20}]]])
 
 (def transform
-  (let [heart (list [:text "🤍"] [:text "🔹"])]
+  (let [heart (list [:text "🤍"]
+[:text "🔹"])]
     [:g {:data-title ""}
      (marcup/md "Group: Transform whole
 ```
-[:g [:text \"🤍\"] [:text \"🔹\"]]
+[:g [:text \"🤍\"]
+[:text \"🔹\"]]
 
 [:g {:transform \"rotate(30)\"} …]
 

@@ -35,6 +35,6 @@
 
 (def slides
   (util/arrange "Share"
-                [sketching 400 0]
+                [sketching 20 120]
                 [communicating 800 0]
                 [legends 1200 0]))

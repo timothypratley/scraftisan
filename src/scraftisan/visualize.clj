@@ -108,7 +108,7 @@
 
 (def slides
   (util/arrange "Visualize"
-                [visuals 0 200]
+                [visuals 30 120]
                 [iff 400 0]
                 [case-study 700 0]
                 [factors 1100 0]

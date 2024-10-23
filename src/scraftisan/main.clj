@@ -34,15 +34,15 @@
 (def intro
   (util/arrange "Stars"
                 [intro/slides -2000 0]
-                [stars/slides 0 0]
-                [astronomy/slides -2000 300]))
+                [stars/slides 0 0]))
 
 (def inspire
   (util/arrange "Inspiration"
                 [aliens/octo1 0 200]
                 [appl/slides 400 0]
                 [anim/slides 2000 0]
-                [why/slides 2000 1000]))
+                [why/slides 2000 1000]
+                [astronomy/slides -2000 300]))
 
 (def how-to-svg
   (util/arrange "How To SVG"
@@ -59,9 +59,9 @@
   (util/arrange "Diagrams"
                 [aliens/octo3 0 200]
                 [think/slides 400 0]
-                [visualize/slides 400 400]
+                [visualize/slides 400 500]
                 [communicate/slides 400 1400]
-                [layout/slides 400 2100]))
+                [layout/slides 400 2000]))
 
 (def a-bit-about-images
   (util/arrange "Art"
@@ -152,8 +152,8 @@
           [:init [:set {:duration "1000"}]]
           (for [i (range (count (slides-seq hiccup)))]
             [:step {:view (slide-id (inc i))}])
-          [:step {:view (slide-id 5)}]
-          [:step {:view (slide-id 14)}]
+          [:step {:view (slide-id 4)}]
+          [:step {:view (slide-id 32)}]
           [:step {:view (slide-id 1)}]]]
         [:g hiccup
          ;; if you want to see the viewboxes
