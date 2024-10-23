@@ -83,8 +83,7 @@
 2. Moved a few years ago
 3. Previous home demolished
 4. Overweight
-5. Considered slow thinking")
-   ])
+5. Considered slow thinking")])
 
 (def initial
   [:g {:data-title ""}

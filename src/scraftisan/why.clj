@@ -3,6 +3,15 @@
             [scraftisan.marcup :as marcup]
             [scraftisan.util :as util]))
 
+(def what
+  [:g {:data-title ""}
+   (marcup/md "
+Scalable: able to be changed in size
+
+Vector: the relation of two positions
+
+Graphics: Greek graphikos for ‘writing, drawing’")])
+
 (def why
   [:g {:data-title ""}
    (marcup/md "* Data
@@ -16,8 +25,6 @@
   [:g {:data-title ""}
    [:image {:href "images/spectrum.svg"}]])
 
-;; TODO: Debuggable! (maybe just open the console during the presentation)
-
 (def oauth2
   [:g {:data-title ""}
    [:image {:href "images/oauth2.png"
@@ -26,6 +33,7 @@
 (def slides
   (util/arrange "Why SVG"
                 [aliens/slug 0 200]
-                [why 400 0]
-                [sweet 900 0]
-                [oauth2 400 400]))
+                [what 400 0]
+                [why 800 0]
+                [sweet 400 500]
+                [oauth2 1400 400]))
