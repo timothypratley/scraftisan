@@ -57,7 +57,8 @@
 (def slides
   (util/arrange "Share"
                 [sketching 20 120]
-                [communicating 800 0]
-                [legends 1200 0]
-                [encoding 1600 0]
-                [food 2000 0]))
+                [communicating 600 0]
+                [legends 900 0]
+                [encoding 1200 0]
+                [food 1600 0]
+                [encoding 2000 0]))
