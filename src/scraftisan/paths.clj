@@ -11,10 +11,13 @@
    (marcup/md "Paths
 
 ```
-[:path {:d \"M 0 0 L 10 10 20 20\"}]
+[:path {:d \"M 0 0 L 10 10 20 5\"}]
 ```
 ")
-   [:path {:d (str/join " " ['M 0 0 'L 10 10 20 20])}]])
+   [:g {:stroke (color/palette 0)
+        :stroke-linecap :round
+        :transform "translate(200, 150) scale(4)"}
+    [:path {:d (str/join " " ['M 0 0 'L 10 10 20 5])}]]])
 
 ;; TODO: mention
 [
